@@ -1,0 +1,18 @@
+node_modules
+.env
+.secret
+coverage
+coverage.json
+typechain
+typechain-types
+
+# Hardhat files
+cache
+artifacts
+
+# storages / codes and cetera
+/deployment/invitations/invitations.json
+/deployment/invitations/invitations_hashed.json
+
+/deployment/reservations/reservations.json
+/deployment/reservations/reservations_hashed.json
