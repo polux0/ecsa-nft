@@ -1,0 +1,10 @@
+[
+  "constructor(address[],uint256[],uint256[])",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function _getBasedOnId(uint256) view returns (address, uint256)",
+  "function getUnitBasedOnId(uint256) returns (string)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function transferOwnership(address)",
+  "function updateRange(uint256,address,uint256,uint256)"
+]

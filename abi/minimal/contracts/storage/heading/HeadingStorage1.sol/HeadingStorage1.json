@@ -1,0 +1,6 @@
+[
+  "constructor()",
+  "function getById(uint256) returns (string)",
+  "function headings(uint256) view returns (string)",
+  "function set(uint256,string)"
+]

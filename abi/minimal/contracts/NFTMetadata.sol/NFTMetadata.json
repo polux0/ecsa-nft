@@ -1,0 +1,15 @@
+[
+  "constructor(address)",
+  "event NFTMetadataDebugging(string)",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function authorizedContract() view returns (address)",
+  "function generateUnit(uint256) returns (string)",
+  "function getTokenURI(uint256) returns (string)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function sendViaCall(address,uint256) payable",
+  "function setAuthorizedContract(address)",
+  "function transferOwnership(address)",
+  "function withdrawERC20(address,address,uint256)",
+  "function withdrawERC721(address,address,uint256)"
+]

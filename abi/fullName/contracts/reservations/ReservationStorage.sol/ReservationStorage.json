@@ -1,0 +1,19 @@
+[
+  "constructor()",
+  "event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)",
+  "event ReservationUsed(bytes32 reservationId)",
+  "function addData(bytes32[] _reservationIds, uint256[] _tokenIds)",
+  "function addData(bytes32 _reservationId, uint256 _tokenId)",
+  "function authorizedContract() view returns (address)",
+  "function dataArray(uint256) view returns (bytes32 reservationId, uint256 tokenId, bool isUsed)",
+  "function dataMapping(uint256) view returns (bytes32 reservationId, uint256 tokenId, bool isUsed)",
+  "function getData(uint256 index) view returns (bytes32, uint256, bool)",
+  "function isReserved(uint256 _tokenId) view returns (bool)",
+  "function isValidReservation(string data, uint256 _tokenId) view returns (bool)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function setAuthorizedContract(address _authorizedContract)",
+  "function setIsUsed(uint256 _tokenId)",
+  "function transferOwnership(address newOwner)",
+  "function updateDataByIndex(uint256 index, bytes32 _newReservationId, uint256 _newTokenId)"
+]

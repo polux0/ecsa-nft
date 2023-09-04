@@ -1,0 +1,6 @@
+[
+  "constructor()",
+  "function getById(uint256 location) returns (string unit)",
+  "function set(uint256 location, string _unit)",
+  "function units(uint256) view returns (string)"
+]

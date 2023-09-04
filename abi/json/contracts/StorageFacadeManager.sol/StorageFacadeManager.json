@@ -1,0 +1,512 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_storageFacades",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_storageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "addStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getChapterStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract ChapterStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFigureStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract FigureStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFootnoteStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract FootnoteStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getHeadingStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract HeadingStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getIncludesFigureStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract IncludesFigureStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLengthStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract LengthStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNetwordedAStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract NetwordedAStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNetwordedBStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract NetwordedBStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNumFootnotesStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract NumFootnotesStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getSectionStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract SectionStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getStorageFacadeAt",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getStorageFacades",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getUnitDescriptorStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract UnitDescriptorStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getUnitStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract UnitStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getXStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract XStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getYStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract YStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getZStorageFacade",
+    "outputs": [
+      {
+        "internalType": "contract ZStorageFacade",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "removeLastStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_chapterStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setChapterStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_headingStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setHeadingStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_includesFigureStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setIncludesFigureStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_lengthStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setLengthStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_networdedAStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setNetwordedAStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_networdedBStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setNetwordedBStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_numFootnotesStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setNumFootnotesStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_sectionStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setSectionStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_storageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setStorageFacadeAt",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_storageFacades",
+        "type": "address[]"
+      }
+    ],
+    "name": "setStorageFacades",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_unitDescriptorStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setUnitDescriptorStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_unitStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setUnitStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_xStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setXStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_yStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setYStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_zStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setZStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
