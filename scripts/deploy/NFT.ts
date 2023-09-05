@@ -25,7 +25,7 @@ async function main() {
   const invitationStorageLocation = 'deployment/invitations/invitation_storage.json';
   const invitationStorageContractAddress: any = storageHandler.loadStorageDeploymentAddresses(invitationStorageLocation);
 
-  const testNFTContract = await testNFT.deploy(nftMetadataAddresses[0], reservationStorageContractAddress[0], invitationStorageContractAddress[0], { gasLimit: 20000000 }) as TestNFTAnother; // as TestNFT
+  const testNFTContract = await testNFT.deploy(nftMetadataAddresses[0], reservationStorageContractAddress[0], invitationStorageContractAddress[0], { gasLimit: 20000000 }) as NFT; // as TestNFT
   await testNFTContract.deployed()
   console.log(`🎥 NFT contract deployed at ${testNFTContract.address}\\n`)
   
