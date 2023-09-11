@@ -18,8 +18,6 @@ import { ReservationStorage } from "./reservations/ReservationStorage.sol";
 // invitation
 import { InvitationStorage } from "./invitations/InvitationStorage.sol";
 // libraries
-import { SVGGenerator} from "./lib/SVGGenerator.sol";
-import { SplitSequence } from "./lib/SplitSequence.sol";
 
 contract NFT is ERC721URIStorage, Ownable{
     using Strings for uint256;
@@ -138,12 +136,10 @@ contract NFT is ERC721URIStorage, Ownable{
         IERC721(tokenAddress).safeTransferFrom(address(this), to, tokenId);
     }
     // Enable withdrawal of ETH
-    function sendViaCall(address payable _to, uint256 amount) public payable onlyOwner{
-        require(address(this).balance >= amount, "Insufficient balance");
-        // Call returns a boolean value indicating success or failure.
-        // This is the current recommended method to use.
-        (bool sent, ) = _to.call{value: address(this).balance}("");
-        require(sent, "Failed to send Ether");
+    function withdrawEther(address to) public onlyOwner{
+        address payable recipient = payable(to);
+        (bool succeed, bytes memory data) = recipient.call{value: address(this).balance}(""); 
+        require(succeed, "Failed to withdraw Ether");
     }
     
 }
