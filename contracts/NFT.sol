@@ -25,8 +25,10 @@ contract NFT is ERC721URIStorage, Ownable{
     NFTMetadata public nftMetadata;
     uint256[] public _alreadyMintedTokenIds;
     Counters.Counter private _tokenIds;
-    uint256 private price1 = 0.0001 ether;
-    uint256 private price2 = 0.0002 ether;
+    uint256 private peripheryPrice = 0.0001 ether;
+    uint256 private peripheryBookPrice = 0.0002 ether;
+    uint256 private imperialCorePrice = 0.01 ether;
+    uint256 private imperialCoreBookPrice = 0.07 ether;
     mapping(uint256 => uint256) public tokenPurchasePrice;
     ReservationStorage reservationContract;
     InvitationStorage invitationsContract;
@@ -40,7 +42,7 @@ contract NFT is ERC721URIStorage, Ownable{
         }
         _;
     }
-    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION", "ECSANFT"){
+    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION14.09.2023", "ECSANFT"){
         //transferOwnership(owner);
         nftMetadata = NFTMetadata(_nftMetadata);
         reservationContract = ReservationStorage(reservationContractAddress);
@@ -69,7 +71,13 @@ contract NFT is ERC721URIStorage, Ownable{
         mintBase(tokenId, chosenPrice);
     }
     function mintById(uint256 tokenId, uint256 chosenPrice) public payable {
-        require(!reservationsActive && !invitationsActive, "Invitations & Reservations are still active");
+        // was before
+        // require(!reservationsActive && !invitationsActive, "Invitations & Reservations are still active");
+        // added now
+        if(reservationContract.isReserved(tokenId)){
+            require(!reservationsActive, "Token is reserved");
+        }
+        require(!invitationsActive, "Invitations are still active");
         require(validPrice(chosenPrice), "Invalid chosen price");
         require(msg.value >= chosenPrice, "Ether value sent is not correct");
         require(!_exists(tokenId), "Token with this ID already exists");
@@ -103,29 +111,38 @@ contract NFT is ERC721URIStorage, Ownable{
 
     function setInvitationsActive(bool _status) external onlyOwner {
         invitationsActive = _status;
-    }
+     }
 
     function validPrice(uint256 price) internal view returns (bool) {
-        return price == price1 || price == price2;
+        return price == peripheryPrice || price == peripheryPrice + peripheryBookPrice || price == imperialCorePrice || price == imperialCorePrice + imperialCoreBookPrice; 
     }
 
     function getPriceForTokenId(uint256 tokenId) public view returns (uint256) {
         return tokenPurchasePrice[tokenId];
     }
-    function getPrice1() external view returns(uint256) {
-        return price1;
+    function getPeripheryPrice() external view returns(uint256) {
+        return peripheryPrice;
     }
-
-    function getPrice2() external view returns(uint256) {
-        return price2;
+    function getPeripheryBookPrice() external view returns(uint256) {
+        return peripheryBookPrice;
     }
-
-    function setPrice1(uint256 _price1) external onlyOwner {
-        price1 = _price1;
+    function getImperialCorePrice() external view returns(uint256) {
+        return peripheryPrice;
     }
-
-    function setPrice2(uint256 _price2) external onlyOwner {
-        price2 = _price2;
+    function getImperialCoreBookPrice() external view returns(uint256) {
+        return peripheryPrice;
+    }  
+    function setPeripheryPrice(uint256 _peripheryPrice) external onlyOwner {
+        peripheryPrice = _peripheryPrice;
+    }
+    function setPeripheryBookPrice(uint256 _peripheryBookPrice) external onlyOwner {
+        peripheryBookPrice = _peripheryBookPrice;
+    }
+    function setImperialCorePrice(uint256 _peripheryPrice) external onlyOwner {
+        peripheryPrice = _peripheryPrice;
+    }
+    function setImperialCoreBookPrice(uint256 _peripheryPrice) external onlyOwner {
+        peripheryPrice = _peripheryPrice;
     }
     // Withdraw ERC20
     function withdrawERC20(address tokenAddress, address to, uint256 amount) external onlyOwner {

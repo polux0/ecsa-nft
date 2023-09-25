@@ -16,6 +16,7 @@ async function main() {
   const reservations: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/reservations.json');
   const reservationsHashed: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/reservations_hashed.json');
   const tokens: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/tokens.json');
+  const physicalBook: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/physical_book.json');
 
   const reservationStorageAddress = [];
 

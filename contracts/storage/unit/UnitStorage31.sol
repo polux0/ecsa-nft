@@ -9,8 +9,8 @@ contract UnitStorage31 is IStorage{
     // set to onlyOwner()
     // check if value exists - 
     constructor(){
-        //575
-              units.push("The above depiction, making a clear and direct connection of tokens to output, is contingent upon a direct offer matching and complete netting. The introduction of a time interval (credit) and the possibility that matching may be indirect, or mediated through a web of matchings, requires a deeper explanation.");
+       //575
+       units.push("The above depiction, making a clear and direct connection of tokens to output, is contingent upon a direct offer matching and complete netting. The introduction of a time interval (credit) and the possibility that matching may be indirect, or mediated through a web of matchings, requires a deeper explanation.");
        units.push("Netting is not itself an explanation of fundamental value when trades occur at different times and there is not a one-to-one correspondence between offers. Put simply, netting presupposes the existence of the things to be netted, yet their delivery to market will not be simultaneous with the offer. Temporal gaps open a need for credit to provide liquidity to the time interval. Hence fundamental value must be explained in the context of credit and the need to create liquidity across a time interval. In this context, credit itself has fundamental value: delivery on its promise of future exchangeability.");
        units.push("THE CONDITIONS OF A DIGITAL POSTCAPITALIST ECONOMY");
        units.push("INTRODUCTION");
@@ -29,7 +29,7 @@ contract UnitStorage31 is IStorage{
        units.push("WHERE TO FROM HERE?");
        units.push("The protocol design principles of the new economic space have required that we cover some detailed and diverse conceptual and philosophical issues and combine them with the capacities of programmable protocol design. There are, no doubt, other ways to imagine and initiate a transition to postcapitalism, and we welcome that debate.");
        units.push("The proposal presented here makes the case that the conditions of postcapitalism lie latent within capitalism and, to make that latent potential imminent, we must develop ways to engage capitalism at its contemporary frontier of innovation; to go beyond, rather than to turn back. In particular, we need to engage three related elements.");
-        // 593
+       // 593
     }
     function set(uint256 location, string calldata _unit) external {
         units[location] = _unit;

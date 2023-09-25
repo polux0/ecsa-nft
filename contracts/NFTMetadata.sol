@@ -112,6 +112,7 @@ contract NFTMetadata is Ownable{
             );
     }
     function getTraitValue(uint256 index, uint256 tokenId) internal returns (string memory) {
+        // if (index == 0) return storageFacadeManager.getFootnoteStorageFacade().getUnitBasedOnId(tokenId);
         if (index == 1) return storageFacadeManager.getFigureStorageFacade().getUnitBasedOnId(tokenId);
         if (index == 2) return storageFacadeManager.getChapterStorageFacade().getUnitBasedOnId(tokenId);
         if (index == 3) return storageFacadeManager.getSectionStorageFacade().getUnitBasedOnId(tokenId);
@@ -125,7 +126,6 @@ contract NFTMetadata is Ownable{
         if (index == 11) return storageFacadeManager.getUnitDescriptorStorageFacade().getUnitBasedOnId(tokenId);
         if (index == 12) return storageFacadeManager.getNetwordedAStorageFacade().getUnitBasedOnId(tokenId);
         if (index == 13) return storageFacadeManager.getNetwordedBStorageFacade().getUnitBasedOnId(tokenId);
-
         return ""; // Handle the default case
     }
     // gnosis safe withdrawal test
@@ -163,7 +163,9 @@ contract NFTMetadata is Ownable{
         string memory description = storageFacadeManager.getUnitStorageFacade().getUnitBasedOnId(tokenId);
         emit NFTMetadataDebugging("after description");
         emit NFTMetadataDebugging(description);
-        string memory image = generateUnit(tokenId);
+        // was before
+        // string memory image = generateUnit(tokenId);
+        string memory image = string(abi.encodePacked("ipfs://QmXJyqtpJwVXfrmwCLqmY89tn9yskK7eMkH6JwzHavekAL/", Strings.toString(tokenId), ".png"));
 
         string[] memory traitValues = new string[](TRAIT_TYPES.length);
         for (uint256 i = 0; i < TRAIT_TYPES.length; i++) {

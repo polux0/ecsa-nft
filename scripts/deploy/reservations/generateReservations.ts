@@ -18,23 +18,26 @@ function generateReservationURL(baseURL: string, numInvitations: number = 100, c
   }
   return urls;
 }
-// note - in production enivornment reservedTokens should be manually created
 // note - for production enviornment ( e-mails mostly ) we should create full URL
 async function main() {
 
   const storageHandler = new StorageHandler();
 
   const baseURL = 'https://ecsa-book.vercel.app/';
-  const invitationURLs = generateReservationURL(baseURL);
+  const invitationURLs = generateReservationURL(baseURL, 36);
 
   const reservations = []
   const reservationsHashed = []
   // note - in production enivornment reservedTokens should be manually created
-  const reservedTokens = []
-  let i = 0;
+  const reservedTokens = [12, 26, 33, 37, 39, 43, 91, 96, 118, 125, 153, 161, 201, 202, 203, 280, 283, 287, 288, 311, 320,
+                          372, 376, 383, 384, 414, 417, 437, 445, 488, 547, 549, 557, 590, 600, 601
+                         ];
+  const physicalBook = [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true,
+                        true,true, false, true, true, true, true, true, false, true, true, true, true, true, false, true,
+                        true, true, true,false 
+                       ];
 
   for (const url of invitationURLs) {
-      i++;
       reservations.push(url);
       // now hash is whole invitation, we need to modify this:
       const params = new URLSearchParams(new URL(url).search);
@@ -45,19 +48,21 @@ async function main() {
       reservationsHashed.push(hash);
       const hashToBytes = ethers.utils.arrayify(hash);
       // note - in production enivornment reservedTokens should be manually created
-      reservedTokens.push(i);
   }
-  console.log('reservations :\n', reservations)
+
+  console.log('reservations :\n', reservations);
   console.log('reservationsHashed: \n', reservationsHashed);
   // console.log('reservedTokens:', reservedTokens);
 
   const outputFileReservations = 'deployment/reservations/reservations.json';
   const outputFileReservationsHashed = 'deployment/reservations/reservations_hashed.json';
   const outputFileTokens = 'deployment/reservations/tokens.json';
+  const outputFilePhysicalBook = 'deployment/reservations/physical_book.json';
 
   storageHandler.saveStorageDeploymentAddresses(reservations, outputFileReservations);
   storageHandler.saveStorageDeploymentAddresses(reservationsHashed, outputFileReservationsHashed);
   storageHandler.saveStorageDeploymentAddresses(reservedTokens, outputFileTokens);
+  storageHandler.saveStorageDeploymentAddresses(physicalBook, outputFilePhysicalBook);
 
 }
 
