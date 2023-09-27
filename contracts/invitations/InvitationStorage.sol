@@ -8,7 +8,7 @@ contract InvitationStorage is Ownable{
     
     struct Data {
         bytes32 invitationId;
-        bool isUsed;
+        uint256 isUsed;
     }
     event InvitationUsed(bytes32 invitationId);
 
@@ -30,7 +30,7 @@ contract InvitationStorage is Ownable{
     function addData(bytes32 _invitationData) public onlyOwner{
         Data memory newData = Data({
             invitationId: _invitationData,
-            isUsed: false
+            isUsed: 0
         });
         dataArray.push(newData);
         dataMapping[_invitationData] = newData;
@@ -49,7 +49,7 @@ contract InvitationStorage is Ownable{
     function getDataByInvitationId(bytes32 _invitationId) public view returns (bool) {
         Data memory dataItem = dataMapping[_invitationId];
         require(dataItem.invitationId != 0, "Invitation not found");
-        return dataItem.isUsed;
+        return dataItem.isUsed >= 3;
     }
 
     function isValidInvitation(string memory data) public view returns (bool) {
@@ -59,7 +59,7 @@ contract InvitationStorage is Ownable{
         if(dataItem.invitationId == 0){
             return false;
         }
-        if (!dataItem.isUsed) {
+        if (dataItem.isUsed <=3) {
             return true;
         }
         return false;
@@ -71,7 +71,7 @@ contract InvitationStorage is Ownable{
 
         require(dataItem.invitationId != 0, "Invitation not found");
 
-        dataItem.isUsed = true;
+        dataItem.isUsed += 1;
         emit InvitationUsed(dataItem.invitationId);
     }
 }
