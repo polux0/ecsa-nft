@@ -9,6 +9,9 @@ async function main() {
   const [deployer,] = await ethers.getSigners();
   const owner = process.env.OWNER || "0x3C44e5692B73e04Cffb0BDa06e28c7cd754E6bf6";
 
+  const imageURL1 = "ipfs://QmUi3oEmEeDc8SqV8NxSyew9fg1QZKGp3fCeSiN7DszNHn/";
+  const imageURL2 = "ipfs://QmZrYrnmrztBcXg4GdWkjMmdCkaeMPWvXprNMp8o4AoYWL/";
+
   const outputFileNftMetadata = 'deployment/nft_metadata.json';
   const nftMetadataContractsAddresses = [];
 
@@ -34,7 +37,7 @@ async function main() {
     },
   });
   
-  const nftMetadataContract = await nftMetadata.deploy(storageFacadeManagerAddresses[0], { gasLimit: 20000000 }) as NFTMetadata; // as NFTMetadata
+  const nftMetadataContract = await nftMetadata.deploy(storageFacadeManagerAddresses[0], imageURL1, imageURL2, { gasLimit: 20000000 }) as NFTMetadata; // as NFTMetadata
   await nftMetadataContract.deployed()
   console.log(`🎥 NFTMetadata contract deployed at ${nftMetadataContract.address}\\n`)
   
@@ -48,6 +51,8 @@ async function main() {
     network: ethers.provider.network,
     constructorArguments: [
       storageFacadeManagerAddresses[0],
+      imageURL1,
+      imageURL2
     ],
     contract: "contracts/NFTMetadata.sol:NFTMetadata"
   })

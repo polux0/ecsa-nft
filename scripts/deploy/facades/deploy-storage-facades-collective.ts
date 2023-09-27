@@ -13,58 +13,58 @@ async function main() {
   console.log(`\\n🤖 deployer address ${deployer.address}\\n`)
     // ************************************ FOOTNOTE_STORAGE_FACADE ************************************
 
-    const footnoteStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/footnote_storage.json');
+  //   const footnoteStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/footnote_storage.json');
 
-    // Mapping of current state of the contracts
-    // FootnoteStorage1 = 1 - 45
-    // FootnoteStorage2 = 46 - 91
-    // FootnoteStorage3 = 92 - 137
-    // FootnoteStorage4 = 138 - 183
-    // FootnoteStorage5 = 184 - 229
-    // FootnoteStorage6 = 230 - 275
-    // FootnoteStorage7 = 276 - 321
-    // FootnoteStorage8 = 322 - 367
-    // FootnoteStorage9 = 368 - 413
-    // FootnoteStorage10 = 414 - 459
-    // FootnoteStorage11 = 460 - 505
-    // FootnoteStorage12 = 506 - 551
-    // FootnoteStorage13 = 552 - 597
-    // FootnoteStorage14 = 598 - 643
-    // FootnoteStorage15 = 644 - 689
-    // FootnoteStorage16 = 690 - 726
+  //   // Mapping of current state of the contracts
+  //   // FootnoteStorage1 = 1 - 45
+  //   // FootnoteStorage2 = 46 - 91
+  //   // FootnoteStorage3 = 92 - 137
+  //   // FootnoteStorage4 = 138 - 183
+  //   // FootnoteStorage5 = 184 - 229
+  //   // FootnoteStorage6 = 230 - 275
+  //   // FootnoteStorage7 = 276 - 321
+  //   // FootnoteStorage8 = 322 - 367
+  //   // FootnoteStorage9 = 368 - 413
+  //   // FootnoteStorage10 = 414 - 459
+  //   // FootnoteStorage11 = 460 - 505
+  //   // FootnoteStorage12 = 506 - 551
+  //   // FootnoteStorage13 = 552 - 597
+  //   // FootnoteStorage14 = 598 - 643
+  //   // FootnoteStorage15 = 644 - 689
+  //   // FootnoteStorage16 = 690 - 726
 
-    // Mapping after Cosmetics of metadata ( 2nd iteration ) ( final for `UnitText`, and should be for `Footnote` as well )
-    // Double checked
-    // FootnoteStorage1 = 1 - 46
-    // FootnoteStorage2 = 47 - 92
-    // FootnoteStorage3 = 93 - 138
-    // FootnoteStorage4 = 139 - 184
-    // FootnoteStorage5 = 185 - 230
-    // FootnoteStorage6 = 231 - 277
-    // FootnoteStorage7 = 278 - 324
-    // FootnoteStorage8 = 325 - 370
-    // FootnoteStorage9 = 371 - 418
-    // FootnoteStorage10 = 419 - 465
-    // FootnoteStorage11 = 466 - 512
-    // FootnoteStorage12 = 513 - 558
-    // FootnoteStorage13 = 559 - 604
-    // FootnoteStorage14 = 605 - 650
-    // FootnoteStorage15 = 651 - 696
-    // FootnoteStorage16 = 697 - 733
-    // FootnoteStorage17 = 734 - 739
+  //   // Mapping after Cosmetics of metadata ( 2nd iteration ) ( final for `UnitText`, and should be for `Footnote` as well )
+  //   // Double checked
+  //   // FootnoteStorage1 = 1 - 46
+  //   // FootnoteStorage2 = 47 - 92
+  //   // FootnoteStorage3 = 93 - 138
+  //   // FootnoteStorage4 = 139 - 184
+  //   // FootnoteStorage5 = 185 - 230
+  //   // FootnoteStorage6 = 231 - 277
+  //   // FootnoteStorage7 = 278 - 324
+  //   // FootnoteStorage8 = 325 - 370
+  //   // FootnoteStorage9 = 371 - 418
+  //   // FootnoteStorage10 = 419 - 465
+  //   // FootnoteStorage11 = 466 - 512
+  //   // FootnoteStorage12 = 513 - 558
+  //   // FootnoteStorage13 = 559 - 604
+  //   // FootnoteStorage14 = 605 - 650
+  //   // FootnoteStorage15 = 651 - 696
+  //   // FootnoteStorage16 = 697 - 733
+  //   // FootnoteStorage17 = 734 - 739
 
-  // const startRangeFootnote = [1, 46, 92, 138, 184, 230, 276, 322, 368, 414, 460, 506, 552, 598, 644, 690];
-  // const endRangeFootnote = [45, 91, 137, 183, 229, 275, 321, 367, 413, 459, 505, 551, 597, 643, 689, 726];
+  // // const startRangeFootnote = [1, 46, 92, 138, 184, 230, 276, 322, 368, 414, 460, 506, 552, 598, 644, 690];
+  // // const endRangeFootnote = [45, 91, 137, 183, 229, 275, 321, 367, 413, 459, 505, 551, 597, 643, 689, 726];
 
-  const startRangeFootnote = [1, 47, 93, 139, 185, 231, 278, 325, 371, 419, 466, 513, 559, 605, 651, 697, 734];
-  const endRangeFootnote = [46, 92, 138, 184, 230, 277, 324, 370, 418, 465, 512, 558, 604, 650, 696, 733, 739];
+  // const startRangeFootnote = [1, 47, 93, 139, 185, 231, 278, 325, 371, 419, 466, 513, 559, 605, 651, 697, 734];
+  // const endRangeFootnote = [46, 92, 138, 184, 230, 277, 324, 370, 418, 465, 512, 558, 604, 650, 696, 733, 739];
 
 
-  const FootnoteStorageFacade = await ethers.getContractFactory('FootnoteStorageFacade')
-  const footnoteStorageFacadeContract = await FootnoteStorageFacade.deploy(footnoteStorageAddresses, startRangeFootnote, endRangeFootnote, { gasLimit: 20000000 }); // as FootnoteStorageFacade
-  await footnoteStorageFacadeContract.deployed()
-  console.log(`💾 Footnote Storage Facade contract deployed at ${footnoteStorageFacadeContract.address}\\n`)
-  storageFacadesContractsAddresses.push(footnoteStorageFacadeContract.address);
+  // const FootnoteStorageFacade = await ethers.getContractFactory('FootnoteStorageFacade')
+  // const footnoteStorageFacadeContract = await FootnoteStorageFacade.deploy(footnoteStorageAddresses, startRangeFootnote, endRangeFootnote, { gasLimit: 20000000 }); // as FootnoteStorageFacade
+  // await footnoteStorageFacadeContract.deployed()
+  // console.log(`💾 Footnote Storage Facade contract deployed at ${footnoteStorageFacadeContract.address}\\n`)
+  // storageFacadesContractsAddresses.push(footnoteStorageFacadeContract.address);
 
   // ************************************ FIGURE_STORAGE_FACADE ************************************
 
@@ -441,17 +441,17 @@ async function main() {
 
   // ************************************ FOOTNOTE_STORAGE_FACADE_VERIFICATION ************************************
   // FootnoteStorage verification
-  await new Promise(resolve => setTimeout(resolve, 20000))
-  await run("verify:verify", {
-    address: footnoteStorageFacadeContract.address,
-    network: ethers.provider.network,
-    constructorArguments: [
-      footnoteStorageAddresses,
-      startRangeFootnote,
-      endRangeFootnote
-    ],
-    contract: "contracts/facades/FootnoteStorageFacade.sol:FootnoteStorageFacade"
-  })
+  // await new Promise(resolve => setTimeout(resolve, 20000))
+  // await run("verify:verify", {
+  //   address: footnoteStorageFacadeContract.address,
+  //   network: ethers.provider.network,
+  //   constructorArguments: [
+  //     footnoteStorageAddresses,
+  //     startRangeFootnote,
+  //     endRangeFootnote
+  //   ],
+  //   contract: "contracts/facades/FootnoteStorageFacade.sol:FootnoteStorageFacade"
+  // })
 
   // ************************************ HEADING_STORAGE_FACADE_VERIFICATION ************************************
   // HeadingStorage verification

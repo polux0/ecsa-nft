@@ -20,12 +20,17 @@ contract NFTMetadata is Ownable{
     using Counters for Counters.Counter;
     string[] internal TRAIT_TYPES;
     StorageFacadeManager storageFacadeManager;
-    address public authorizedContract; 
+    address public authorizedContract;
+    string public imageURL1;
+    string public imageURL2;
+
     event NFTMetadataDebugging(string message);
 
-    constructor(address _storageFacadeManager) {
+    constructor(address _storageFacadeManager, string memory _imageURL1, string memory _imageURL2) {
         storageFacadeManager = StorageFacadeManager(_storageFacadeManager);
         authorizedContract = _storageFacadeManager;
+        imageURL1 = _imageURL1;
+        imageURL2 = _imageURL2;
         TRAIT_TYPES = initializeTraitTypes();
     }
     modifier onlyAuthorizedContract() {
@@ -34,6 +39,12 @@ contract NFTMetadata is Ownable{
     }
     function setAuthorizedContract(address _authorizedContract) external onlyOwner {
         authorizedContract = _authorizedContract;
+    }
+    function setImageURL1(string memory _imageURL1) external onlyOwner {
+        imageURL1 = _imageURL1;
+    }
+    function setImageURL2(string memory _imageURL2) external onlyOwner {
+        imageURL2 = _imageURL2;
     }
     // works well with units
     // function generateUnit(uint256 tokenId) public returns (string memory){
@@ -49,20 +60,20 @@ contract NFTMetadata is Ownable{
     // }
     function initializeTraitTypes() internal pure returns (string[] memory) {
         string[] memory traitTypes = new string[](15);
-        traitTypes[0] = "Footnote";
-        traitTypes[1] = "Figure";
-        traitTypes[2] = "Chapter";
-        traitTypes[3] = "Section";
-        traitTypes[4] = "Heading";
-        traitTypes[5] = "Num Footnotes";
-        traitTypes[6] = "Includes figure";
-        traitTypes[7] = "Length";
-        traitTypes[8] = "X";
-        traitTypes[9] = "Y";
-        traitTypes[10] = "Z";
-        traitTypes[11] = "Nodewords";
-        traitTypes[12] = "Netword A";
-        traitTypes[13] = "Netword B";
+        // traitTypes[0] = "Footnote";
+        traitTypes[0] = "Figure";
+        traitTypes[1] = "Chapter";
+        traitTypes[2] = "Section";
+        traitTypes[3] = "Heading";
+        traitTypes[4] = "Num Footnotes";
+        traitTypes[5] = "Includes figure";
+        traitTypes[6] = "Length";
+        traitTypes[7] = "X";
+        traitTypes[8] = "Y";
+        traitTypes[9] = "Z";
+        traitTypes[10] = "Nodewords";
+        traitTypes[11] = "Netword A";
+        traitTypes[12] = "Netword B";
         return traitTypes;
     }
     function buildAttributes(string[] memory traitTypes, string[] memory traitValues) internal pure returns (string memory) {
@@ -113,19 +124,19 @@ contract NFTMetadata is Ownable{
     }
     function getTraitValue(uint256 index, uint256 tokenId) internal returns (string memory) {
         // if (index == 0) return storageFacadeManager.getFootnoteStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 1) return storageFacadeManager.getFigureStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 2) return storageFacadeManager.getChapterStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 3) return storageFacadeManager.getSectionStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 4) return storageFacadeManager.getHeadingStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 5) return storageFacadeManager.getNumFootnotesStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 6) return storageFacadeManager.getIncludesFigureStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 7) return storageFacadeManager.getLengthStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 8) return storageFacadeManager.getXStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 9) return storageFacadeManager.getYStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 10) return storageFacadeManager.getZStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 11) return storageFacadeManager.getUnitDescriptorStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 12) return storageFacadeManager.getNetwordedAStorageFacade().getUnitBasedOnId(tokenId);
-        if (index == 13) return storageFacadeManager.getNetwordedBStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 0) return storageFacadeManager.getFigureStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 1) return storageFacadeManager.getChapterStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 2) return storageFacadeManager.getSectionStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 3) return storageFacadeManager.getHeadingStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 4) return storageFacadeManager.getNumFootnotesStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 5) return storageFacadeManager.getIncludesFigureStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 6) return storageFacadeManager.getLengthStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 7) return storageFacadeManager.getXStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 8) return storageFacadeManager.getYStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 9) return storageFacadeManager.getZStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 10) return storageFacadeManager.getUnitDescriptorStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 11) return storageFacadeManager.getNetwordedAStorageFacade().getUnitBasedOnId(tokenId);
+        if (index == 12) return storageFacadeManager.getNetwordedBStorageFacade().getUnitBasedOnId(tokenId);
         return ""; // Handle the default case
     }
     // gnosis safe withdrawal test
@@ -165,7 +176,9 @@ contract NFTMetadata is Ownable{
         emit NFTMetadataDebugging(description);
         // was before
         // string memory image = generateUnit(tokenId);
-        string memory image = string(abi.encodePacked("ipfs://QmXJyqtpJwVXfrmwCLqmY89tn9yskK7eMkH6JwzHavekAL/", Strings.toString(tokenId), ".png"));
+
+        string memory imageURL = tokenId >= 401 ? imageURL2 : imageURL1;
+        string memory image = string(abi.encodePacked(imageURL, Strings.toString(tokenId), ".png"));
 
         string[] memory traitValues = new string[](TRAIT_TYPES.length);
         for (uint256 i = 0; i < TRAIT_TYPES.length; i++) {

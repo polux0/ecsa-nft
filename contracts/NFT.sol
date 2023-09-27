@@ -42,7 +42,7 @@ contract NFT is ERC721URIStorage, Ownable{
         }
         _;
     }
-    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION14.09.2023", "ECSANFT"){
+    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION27.09.2023", "ECSANFT"){
         //transferOwnership(owner);
         nftMetadata = NFTMetadata(_nftMetadata);
         reservationContract = ReservationStorage(reservationContractAddress);

@@ -7,7 +7,7 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol"; // OZ: 
 import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol"; // OZ: IERC721;
 import { ChapterStorageFacade } from "./facades/ChapterStorageFacade.sol";
 import { FigureStorageFacade } from "./facades/FigureStorageFacade.sol";
-import { FootnoteStorageFacade } from "./facades/FootnoteStorageFacade.sol";
+// import { FootnoteStorageFacade } from "./facades/FootnoteStorageFacade.sol";
 import { HeadingStorageFacade } from "./facades/HeadingStorageFacade.sol";
 import { LengthStorageFacade } from "./facades/LengthStorageFacade.sol";
 import { NetwordedAStorageFacade } from "./facades/NetwordedAStorageFacade.sol";
@@ -23,7 +23,7 @@ import { ZStorageFacade } from "./facades/ZStorageFacade.sol";
 
 contract StorageFacadeManager is Ownable{
     address []storageFacades;
-    FootnoteStorageFacade foonoteStorageFacade;
+    // FootnoteStorageFacade foonoteStorageFacade;
     FigureStorageFacade  figureStorageFacade;
     ChapterStorageFacade chapterStorageFacade;
     SectionStorageFacade sectionStorageFacade;
@@ -58,21 +58,21 @@ contract StorageFacadeManager is Ownable{
 
     constructor(address[] memory _storageFacades){
         storageFacades = _storageFacades;
-        foonoteStorageFacade = FootnoteStorageFacade(storageFacades[0]); 
-        figureStorageFacade = FigureStorageFacade(storageFacades[1]); 
-        chapterStorageFacade = ChapterStorageFacade(storageFacades[2]); 
-        sectionStorageFacade = SectionStorageFacade(storageFacades[3]); 
-        headingStorageFacade = HeadingStorageFacade(storageFacades[4]); 
-        numFootnotesStorageFacade = NumFootnotesStorageFacade(storageFacades[5]); 
-        includesFigureStorageFacade = IncludesFigureStorageFacade(storageFacades[6]); 
-        lengthStorageFacade = LengthStorageFacade(storageFacades[7]); 
-        xStorageFacade = XStorageFacade(storageFacades[8]); 
-        yStorageFacade = YStorageFacade(storageFacades[9]); 
-        zStorageFacade = ZStorageFacade(storageFacades[10]); 
-        unitDescriptorStorageFacade = UnitDescriptorStorageFacade(storageFacades[11]);
-        networdedAStorageFacade = NetwordedAStorageFacade(storageFacades[12]); 
-        networdedBStorageFacade = NetwordedBStorageFacade(storageFacades[13]); 
-        unitStorageFacade = UnitStorageFacade(storageFacades[14]);
+        // foonoteStorageFacade = FootnoteStorageFacade(storageFacades[0]); 
+        figureStorageFacade = FigureStorageFacade(storageFacades[0]); 
+        chapterStorageFacade = ChapterStorageFacade(storageFacades[1]); 
+        sectionStorageFacade = SectionStorageFacade(storageFacades[2]); 
+        headingStorageFacade = HeadingStorageFacade(storageFacades[3]); 
+        numFootnotesStorageFacade = NumFootnotesStorageFacade(storageFacades[4]); 
+        includesFigureStorageFacade = IncludesFigureStorageFacade(storageFacades[5]); 
+        lengthStorageFacade = LengthStorageFacade(storageFacades[6]); 
+        xStorageFacade = XStorageFacade(storageFacades[7]); 
+        yStorageFacade = YStorageFacade(storageFacades[8]); 
+        zStorageFacade = ZStorageFacade(storageFacades[9]); 
+        unitDescriptorStorageFacade = UnitDescriptorStorageFacade(storageFacades[10]);
+        networdedAStorageFacade = NetwordedAStorageFacade(storageFacades[11]); 
+        networdedBStorageFacade = NetwordedBStorageFacade(storageFacades[12]); 
+        unitStorageFacade = UnitStorageFacade(storageFacades[13]);
     }
     // Getter for the entire array
     function getStorageFacades() external view returns (address[] memory) {
@@ -107,9 +107,9 @@ contract StorageFacadeManager is Ownable{
         storageFacades.pop();
     }
     // Getters
-    function getFootnoteStorageFacade() external view returns (FootnoteStorageFacade) {
-        return foonoteStorageFacade;
-    }
+    // function getFootnoteStorageFacade() external view returns (FootnoteStorageFacade) {
+    //     return foonoteStorageFacade;
+    // }
     function getFigureStorageFacade() external view returns (FigureStorageFacade) {
         return figureStorageFacade;
     }
@@ -166,6 +166,11 @@ contract StorageFacadeManager is Ownable{
         return unitStorageFacade;
     }
     // Setters
+
+    function setFigureStorageFacade(address _figureStorageFacade) external onlyOwner {
+        figureStorageFacade = FigureStorageFacade(_figureStorageFacade);
+    }
+
     function setChapterStorageFacade(address _chapterStorageFacade) external onlyOwner {
         chapterStorageFacade = ChapterStorageFacade(_chapterStorageFacade);
     }
@@ -217,12 +222,4 @@ contract StorageFacadeManager is Ownable{
     function setUnitStorageFacade(address _unitStorageFacade) external onlyOwner {
         unitStorageFacade = UnitStorageFacade(_unitStorageFacade);
     }
-
-
-
-
-
-
-
-
 }

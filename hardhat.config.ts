@@ -56,6 +56,7 @@ export default {
     },
     sepolia: {
       url: `https://sepolia.infura.io/v3/${infuraKey}`,
+      // gasPrice: 5000000000,
       accounts: {
         mnemonic: mnemonic,
       },

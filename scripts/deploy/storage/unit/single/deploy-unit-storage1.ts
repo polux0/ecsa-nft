@@ -12,19 +12,15 @@ async function main() {
   await unitStorage1Contract.deployed()
   console.log(`🎥 unitStorage1Contract contract deployed at ${unitStorage1Contract.address}\\n`)
 
-
-  // VisionTreasury verification
-  // await new Promise(resolve => setTimeout(resolve, 20000))
-  // await run("verify:verify", {
-  //   address: visionTreasuryContract.address,
-  //   network: ethers.provider.network,
-  //   constructorArguments: [
-  //     // ecsaERC20Address,
-  //     // root,
-  //     // adminWithdrawalTimestamp
-  //   ],
-  //   contract: "contracts/VisionTreasury.sol:VisionTreasury"
-  // })
+  // UnitStorage1 verification
+  await new Promise(resolve => setTimeout(resolve, 60000))
+  await run("verify:verify", {
+    address: unitStorage1Contract.address,
+    network: ethers.provider.network,
+    constructorArguments: [
+    ],
+    contract: "contracts/storage/unit/UnitStorage1.sol:UnitStorage1"
+  })
 
 }
 
