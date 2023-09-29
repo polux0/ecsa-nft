@@ -91,9 +91,9 @@
         "type": "bytes32"
       },
       {
-        "internalType": "bool",
+        "internalType": "uint256",
         "name": "isUsed",
-        "type": "bool"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -115,9 +115,9 @@
         "type": "bytes32"
       },
       {
-        "internalType": "bool",
+        "internalType": "uint256",
         "name": "isUsed",
-        "type": "bool"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",

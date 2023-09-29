@@ -65,7 +65,9 @@ contract NFTMetadata is Ownable{
         traitTypes[1] = "Chapter";
         traitTypes[2] = "Section";
         traitTypes[3] = "Heading";
-        traitTypes[4] = "Num Footnotes";
+        // was before
+        // traitTypes[4] = "Num Footnotes";
+        traitTypes[4] = "Footnotes count";
         traitTypes[5] = "Includes figure";
         traitTypes[6] = "Length";
         traitTypes[7] = "X";

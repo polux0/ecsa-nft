@@ -70,19 +70,6 @@
   },
   {
     "inputs": [],
-    "name": "getFootnoteStorageFacade",
-    "outputs": [
-      {
-        "internalType": "contract FootnoteStorageFacade",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "getHeadingStorageFacade",
     "outputs": [
       {
@@ -305,6 +292,19 @@
       }
     ],
     "name": "setChapterStorageFacade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_figureStorageFacade",
+        "type": "address"
+      }
+    ],
+    "name": "setFigureStorageFacade",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

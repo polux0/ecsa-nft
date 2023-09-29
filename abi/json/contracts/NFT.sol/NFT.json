@@ -222,6 +222,32 @@
   },
   {
     "inputs": [],
+    "name": "getImperialCoreBookPrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getImperialCorePrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getInvitationsActive",
     "outputs": [
       {
@@ -235,7 +261,7 @@
   },
   {
     "inputs": [],
-    "name": "getPrice1",
+    "name": "getPeripheryBookPrice",
     "outputs": [
       {
         "internalType": "uint256",
@@ -248,7 +274,7 @@
   },
   {
     "inputs": [],
-    "name": "getPrice2",
+    "name": "getPeripheryPrice",
     "outputs": [
       {
         "internalType": "uint256",
@@ -281,6 +307,25 @@
   {
     "inputs": [],
     "name": "getReservationsActive",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "hasMinted",
     "outputs": [
       {
         "internalType": "bool",
@@ -529,6 +574,32 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_peripheryPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "setImperialCoreBookPrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_peripheryPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "setImperialCorePrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bool",
         "name": "_status",
         "type": "bool"
@@ -543,11 +614,11 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_price1",
+        "name": "_peripheryBookPrice",
         "type": "uint256"
       }
     ],
-    "name": "setPrice1",
+    "name": "setPeripheryBookPrice",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -556,11 +627,11 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_price2",
+        "name": "_peripheryPrice",
         "type": "uint256"
       }
     ],
-    "name": "setPrice2",
+    "name": "setPeripheryPrice",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

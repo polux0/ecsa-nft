@@ -5,6 +5,16 @@
         "internalType": "address",
         "name": "_storageFacadeManager",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_imageURL1",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_imageURL2",
+        "type": "string"
       }
     ],
     "stateMutability": "nonpayable",
@@ -95,6 +105,32 @@
   },
   {
     "inputs": [],
+    "name": "imageURL1",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "imageURL2",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -140,6 +176,32 @@
       }
     ],
     "name": "setAuthorizedContract",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_imageURL1",
+        "type": "string"
+      }
+    ],
+    "name": "setImageURL1",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_imageURL2",
+        "type": "string"
+      }
+    ],
+    "name": "setImageURL2",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

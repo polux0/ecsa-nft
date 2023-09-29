@@ -30,6 +30,7 @@ contract NFT is ERC721URIStorage, Ownable{
     uint256 private imperialCorePrice = 0.01 ether;
     uint256 private imperialCoreBookPrice = 0.07 ether;
     mapping(uint256 => uint256) public tokenPurchasePrice;
+    mapping(address => bool) public hasMinted;
     ReservationStorage reservationContract;
     InvitationStorage invitationsContract;
     bool reservationsActive = false;
@@ -42,7 +43,7 @@ contract NFT is ERC721URIStorage, Ownable{
         }
         _;
     }
-    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION27.09.2023", "ECSANFT"){
+    constructor(address _nftMetadata, address reservationContractAddress, address invitationsContractAddress) ERC721("PROTOCOLS FOR POST-CAPITALIST ECONOMIC EXPRESSION29.09.2023", "ECSANFT"){
         //transferOwnership(owner);
         nftMetadata = NFTMetadata(_nftMetadata);
         reservationContract = ReservationStorage(reservationContractAddress);
@@ -81,7 +82,10 @@ contract NFT is ERC721URIStorage, Ownable{
         require(validPrice(chosenPrice), "Invalid chosen price");
         require(msg.value >= chosenPrice, "Ether value sent is not correct");
         require(!_exists(tokenId), "Token with this ID already exists");
+        require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
+
         _alreadyMintedTokenIds.push(tokenId);
+        hasMinted[msg.sender] = true;
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, nftMetadata.getTokenURI(tokenId));
     }
@@ -91,8 +95,11 @@ contract NFT is ERC721URIStorage, Ownable{
         require(validPrice(chosenPrice), "Invalid chosen price");
         require(msg.value >= chosenPrice, "Ether value sent is not correct");
         require(tokenId <= 601, "Token ID greater than allowed maximum");
+        require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
+
         tokenPurchasePrice[tokenId] = chosenPrice;
         _alreadyMintedTokenIds.push(tokenId);
+         hasMinted[msg.sender] = true;
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, nftMetadata.getTokenURI(tokenId));
     }
