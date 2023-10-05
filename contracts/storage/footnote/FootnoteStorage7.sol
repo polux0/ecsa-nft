@@ -61,7 +61,7 @@ contract FootnoteStorage7 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	       footnotes.push("[92] The mechanics of this process are examined in Chapter 10.2.");
-       footnotes.push("[93] See L\\uF3pez, J. \\u2018Market shares: Distributed Staking Protocol.\\u2019 http://marketshares.manifold.one");
+       footnotes.push("[93] See  L\\u00F3pez, J. \\u2018Market shares: Distributed Staking Protocol.\\u2019 http://marketshares.manifold.one");
 
 	footnotes.push("N/a");
 	footnotes.push("N/a");

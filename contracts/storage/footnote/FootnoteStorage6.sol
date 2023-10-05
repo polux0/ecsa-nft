@@ -44,7 +44,7 @@ contract FootnoteStorage6 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	       footnotes.push("[78] Stakers could, for this purpose, be considered participants. They could make their staking conditional on the performance offer having a certain structure, including its social relations in production. Furthermore, we expect performing relations to become a new value layer: a critical performance outcome.");
-       footnotes.push("[79] See L\\uF3pez, J. \\u2018Network Performance: Distributed Computing Protocol.\\u2019 http://network-performance.manifold.one");
+       footnotes.push("[79] See  L\\u00F3pez, J. \\u2018Network Performance: Distributed Computing Protocol.\\u2019 http://network-performance.manifold.one");
 
 	footnotes.push("N/a");
 	footnotes.push("N/a");

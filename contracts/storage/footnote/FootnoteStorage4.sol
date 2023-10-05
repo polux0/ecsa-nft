@@ -55,7 +55,7 @@ contract FootnoteStorage4 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	       footnotes.push("[51] Of course these outputs _can_ be designed for commercial sale, but that will capture only a fraction of their social contribution/collective value.");
-       footnotes.push("[52] At this point in the analysis, a surplus can be taken to mean any excess over what is required to reproduce the current conditions of the network. It is usually thought in financial terms (profit rent, interest) or commodity outputs in excess of commodity inputs (e.g.\\uA0Sraffa, 1960). We will later invoke broader, more social perspectives on \\u2018surplus.\\u2019");
+       footnotes.push("[52] At this point in the analysis, a surplus can be taken to mean any excess over what is required to reproduce the current conditions of the network. It is usually thought in financial terms (profit rent, interest) or commodity outputs in excess of commodity inputs (e.g. Sraffa, 1960). We will later invoke broader, more social perspectives on \\u2018surplus.\\u2019");
 
     footnotes.push("N/a");
 	       footnotes.push("[53] See, for example Goldman Sachs analyst (later Professor of Financial Engineering at Columbia University) Emanuel Derman (2002) says of short-term investors: \\u2018They may perceive and experience the risk and return of a stock in _intrinsic time_, a dimensionless time scale that counts the number of trading opportunities that occur, but pays no attention to the calendar time that passes between them.\\u2019");
