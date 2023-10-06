@@ -59,7 +59,7 @@ contract NFTMetadata is Ownable{
     //     );
     // }
     function initializeTraitTypes() internal pure returns (string[] memory) {
-        string[] memory traitTypes = new string[](15);
+        string[] memory traitTypes = new string[](13);
         // traitTypes[0] = "Footnote";
         traitTypes[0] = "Figure";
         traitTypes[1] = "Chapter";
@@ -179,8 +179,14 @@ contract NFTMetadata is Ownable{
         // was before
         // string memory image = generateUnit(tokenId);
 
-        string memory imageURL = tokenId >= 401 ? imageURL2 : imageURL1;
+        // was before ()
+        // string memory imageURL = tokenId >= 401 ? imageURL2 : imageURL1;
+
+        string memory imageURL = "ipfs://QmXJyqtpJwVXfrmwCLqmY89tn9yskK7eMkH6JwzHavekAL/";
         string memory image = string(abi.encodePacked(imageURL, Strings.toString(tokenId), ".png"));
+
+        emit NFTMetadataDebugging("image");
+        emit NFTMetadataDebugging(image);
 
         string[] memory traitValues = new string[](TRAIT_TYPES.length);
         for (uint256 i = 0; i < TRAIT_TYPES.length; i++) {
