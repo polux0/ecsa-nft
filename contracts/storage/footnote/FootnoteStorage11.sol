@@ -35,7 +35,7 @@ contract FootnoteStorage11 is IStorage{
 	footnotes.push("N/a");
 	// adding missing unit
 	footnotes.push("N/a");
-	       footnotes.push("[139] On claims to \\u2018fundamental value,\\u2019 see esp.\\uA0Chapter 12.3 and Appendices 5.1 and 12.2.");
+	       footnotes.push("[139] On claims to \\u2018fundamental value,\\u2019 see esp. Chapter 12.3 and Appendices 5.1 and 12.2.");
            footnotes.push("[140] Each staking contract will specify its particular version of these participation rights.");
 	footnotes.push("N/a");
 	footnotes.push("N/a");

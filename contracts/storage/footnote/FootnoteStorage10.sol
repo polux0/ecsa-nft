@@ -55,7 +55,7 @@ contract FootnoteStorage10 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
-	       footnotes.push("[131] See L\\uF3pez, J. \\u2018Market offers: Distributed trading protocol.\\u2019 http://marketoffers.manifold.one");
+	       footnotes.push("[131] See L\\u00F3pez, J. \\u2018Market offers: Distributed trading protocol.\\u2019 http://marketoffers.manifold.one");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	       footnotes.push("[132] Here we are in parallel with Marx (1939: 259), explaining the development of the concept of capital:\\n . . . it is necessary to begin not with labor but with value, and, precisely, with exchange value as an already developed movement of circulation.");
@@ -65,7 +65,7 @@ contract FootnoteStorage10 is IStorage{
 	footnotes.push("N/a");
 	       footnotes.push("[134] This and the following chapter \\u2013 indeed the whole framing of token markets \\u2013 draws on the \\u2018money view\\u2019 of economic analysis of Perry Mehrling (n.d.). For a summary see Saeidinezhad (2020).");
 	footnotes.push("N/a");
-	       footnotes.push("[135] See L\\uF3pez, J. \\u2018Market offers: Distributed trading protocol.\\u2019 http://marketoffers.manifold.one\\n [136] Liquidity comes with the capacity of the matching algorithm to increase matching opportunities.");
+	       footnotes.push("[135] See L\\u00F3pez, J. \\u2018Market offers: Distributed trading protocol.\\u2019 http://marketoffers.manifold.one\\n [136] Liquidity comes with the capacity of the matching algorithm to increase matching opportunities.");
     // 464
 	}
     function set(uint256 location, string calldata _unit) external {

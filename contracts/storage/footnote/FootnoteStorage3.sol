@@ -20,7 +20,7 @@ contract FootnoteStorage3 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
-	footnotes.push("[22] Stripped to its basics, the liquidity premium is a cost that addresses the deepest, darkest fear of capitalism: that the market (people to sell to or buy from) will simply disappear in sufficient numbers so that the flow will stop. This point, and the necessity of the dealer function, has been emphasized to us by Colin Drumm (2021), see also Treynor (1987).\\n [23] For explanation see L\\uF3pez, J. \\u2018Market credit: Distributed liquidity protocol.\\u2019 http://marketcredit.manifold.one\\n [24] This is the practice of shadow banking. Many people equate shadow banking with illegality. But investment banks like Goldman Sachs, insurance and reinsurance companies and money market funds \\u2013 many of which are divisions of large \\u2018standard\\u2019 banks \\u2013 engage in shadow banking, where the feature of being outside standard regulation is that lending is fully collateralized.");
+	footnotes.push("[22] Stripped to its basics, the liquidity premium is a cost that addresses the deepest, darkest fear of capitalism: that the market (people to sell to or buy from) will simply disappear in sufficient numbers so that the flow will stop. This point, and the necessity of the dealer function, has been emphasized to us by Colin Drumm (2021), see also Treynor (1987).\\n [23] For explanation see L\\u00F3pez, J. \\u2018Market credit: Distributed liquidity protocol.\\u2019 http://marketcredit.manifold.one\\n [24] This is the practice of shadow banking. Many people equate shadow banking with illegality. But investment banks like Goldman Sachs, insurance and reinsurance companies and money market funds \\u2013 many of which are divisions of large \\u2018standard\\u2019 banks \\u2013 engage in shadow banking, where the feature of being outside standard regulation is that lending is fully collateralized.");
 	footnotes.push("N/a");
 	       footnotes.push("[25] A unit of value will be explained in Chapter 6.3. Suffice it here to define it as a socially/ historically specific system of measurement.\\n [26] There can be an argument that the concept of \\u2018profit\\u2019 is not specific to capitalism; what is specific is the way profits are calculated. We have chosen to adopt the word \\u2018surplus\\u2019 in relation to the Economic Space Protocol to avoid ambiguity. See Appendix 5.2 for elaboration.");
     footnotes.push("[27] We note the blurring of the categories of money and assets. One form of blurring is between debt (money) and equity (assets) (e.g. convertible bonds). Another is found in central bank policies of Quantitative Easing, and the expanding range of assets central banks are taking onto their books in the name of 'monetary policy.' The blurring was noted by Myron Scholes (1997) in his Nobel Prize lecture.");
@@ -39,7 +39,7 @@ contract FootnoteStorage3 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
-	       footnotes.push("[32] See L\\uF3pez, J. \\u2018DJS: Distributed Javascript.\\u2019 http://djs.manifold.one");
+	       footnotes.push("[32] See L\\u00F3pez, J. \\u2018DJS: Distributed Javascript.\\u2019 http://djs.manifold.one");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
