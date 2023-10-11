@@ -54,7 +54,7 @@ contract FootnoteStorage3 is IStorage{
 	footnotes.push("N/a");
 	footnotes.push("N/a");
 	footnotes.push("N/a");
-	       footnotes.push("[35] We already see, to quote Nick Land (2018, \\uA72.653), if human beings are found to be irrational or incompetent or \\u2018lack the plasticity to compete in these terms, or revolt against the roles and templates being automatically laid-out for them, then artificial agencies \\u2013 \\u2018DAOs\\u2019 \\u2013 will be fabricated to play the game instead.\\u2019");
+	       footnotes.push("[35] We already see, to quote Nick Land (2018, \\u00A72.653), if human beings are found to be irrational or incompetent or \\u2018lack the plasticity to compete in these terms, or revolt against the roles and templates being automatically laid-out for them, then artificial agencies \\u2013 \\u2018DAOs\\u2019 \\u2013 will be fabricated to play the game instead.\\u2019");
        footnotes.push("[36] For example, Nick Szabo tweeted about economists and programmers: \\u2018An economist or programmer who hasn\\u2019t studied much computer science, including cryptography, but guesses about it, cannot design or build a long-term successful cryptocurrency. A computer scientist and programmer who hasn\\u2019t studied much economics, but applies common sense, can.\\u2019 @NickSzabo4, March 23 2018 https://twitter.com/nickszabo4/status/977035747713675264");
 
 	footnotes.push("N/a");
