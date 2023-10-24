@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, run, hardhatArguments } from "hardhat";
 import { ChapterStorage1, ChapterStorage2, FigureStorage1, FigureStorage2, FootnoteStorage1, FootnoteStorage10, FootnoteStorage11, FootnoteStorage12, FootnoteStorage13, FootnoteStorage14, FootnoteStorage15, FootnoteStorage16, FootnoteStorage17, FootnoteStorage2, FootnoteStorage3, FootnoteStorage4, FootnoteStorage5, FootnoteStorage6, FootnoteStorage7, FootnoteStorage8, FootnoteStorage9, HeadingStorage1, HeadingStorage2, IncludesFigureStorage1, IncludesFigureStorage2, LengthStorage1, LengthStorage2, NetwordedAStorage1, NetwordedAStorage2, NetwordedBStorage1, NetwordedBStorage2, NumFootnotesStorage1, NumFootnotesStorage2, SectionStorage1, SectionStorage2, XStorage1, XStorage2, YStorage1, YStorage2, ZStorage1, ZStorage2 } from "../../../typechain";
 import { StorageHandler } from '../../StorageHandler';
 
@@ -10,6 +10,14 @@ async function main() {
 
   // *************************************** CHAPTER_STORAGE ************************************************
   const chapterStorageContractsAddresses = [];
+
+  //
+  const outputFileChapter = `deployment/${hardhatArguments.network}/storage/chapter_storage.json`;
+
+
+  const directoryChapter = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameChapter = 'chapter_storage.json';  
+  //
 
   // Deploy the ChapterStorage1
   const chapterStorage1 = await ethers.getContractFactory('ChapterStorage1')
@@ -27,9 +35,9 @@ async function main() {
 
   chapterStorageContractsAddresses.push(chapterStorage2Contract.address);
   
-  const outputFileChapter = 'deployment/storage/chapter_storage.json';
-  
-  storageHandler.saveStorageDeploymentAddresses(chapterStorageContractsAddresses, outputFileChapter);
+
+  await storageHandler.ensureDirectoryExistence(directoryChapter, filenameChapter);
+  await storageHandler.saveStorageDeploymentAddresses(chapterStorageContractsAddresses, outputFileChapter);
 
   // *************************************** FIGURE_STORAGE *************************************************
 
@@ -49,8 +57,15 @@ async function main() {
   console.log(`🎥 figureStorage2Contract contract deployed at ${figureStorage2Contract.address}\\n`)
   figureStorageContractsAddresses.push(figureStorage2Contract.address);
 
-  const outputFileFigure = 'deployment/storage/figure_storage.json';
-  storageHandler.saveStorageDeploymentAddresses(figureStorageContractsAddresses, outputFileFigure);
+
+  const outputFileFigure = `deployment/${hardhatArguments.network}/storage/figure_storage.json`;
+
+
+  const directoryFigure = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameFigure = 'figure_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryFigure, filenameFigure);
+  await storageHandler.saveStorageDeploymentAddresses(figureStorageContractsAddresses, outputFileFigure);
 
   // *************************************** FOOTNOTE_STORAGE *************************************************
 
@@ -98,7 +113,7 @@ async function main() {
   // console.log(`🎥 footnoteStorage5Contract contract deployed at ${footnoteStorage5Contract.address}\\n`)
 
   // //save
-  // storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
+  // await storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
 
   // await new Promise(resolve => setTimeout(resolve, 20000))
   // // Deploy the FootnoteStorage6 
@@ -141,7 +156,7 @@ async function main() {
   // console.log(`🎥 footnoteStorage10Contract contract deployed at ${footnoteStorage10Contract.address}\\n`)
 
   // //save
-  // storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
+  // await storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
 
   // await new Promise(resolve => setTimeout(resolve, 20000))
   // // Deploy the FootnoteStorage11 
@@ -185,7 +200,7 @@ async function main() {
   // console.log(`🎥 footnoteStorage15Contract contract deployed at ${footnoteStorage15Contract.address}\\n`)
 
   // //save
-  // storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
+  // await storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
 
   // await new Promise(resolve => setTimeout(resolve, 20000))
   // // Deploy the FootnoteStorage16 
@@ -203,7 +218,7 @@ async function main() {
   // footnoteStorageContractsAddresses.push(footnoteStorage17Contract.address)
   // console.log(`🎥 footnoteStorage17Contract contract deployed at ${footnoteStorage17Contract.address}\\n`)
 
-  // storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
+  // await storageHandler.saveStorageDeploymentAddresses(footnoteStorageContractsAddresses, outputFileFootnote);
 
   // *************************************** HEADING_STORAGE *************************************************
 
@@ -214,6 +229,8 @@ async function main() {
   const headingStorage1Contract = await headingStorage1.deploy({ gasLimit: 20000000 }) as HeadingStorage1; // as HeadingStorage1
   await headingStorage1Contract.deployed()
   console.log(`🎥 HeadingStorage1Contract contract deployed at ${headingStorage1Contract.address}\\n`)
+
+  
   headingStorageContractAddresses.push(headingStorage1Contract.address);
 
   // Deploy the HeadingStorage2
@@ -223,8 +240,13 @@ async function main() {
   console.log(`🎥 HeadingStorage2Contract contract deployed at ${headingStorage2Contract.address}\\n`)
   headingStorageContractAddresses.push(headingStorage2Contract.address);
 
-  const outputFileHeading = 'deployment/storage/heading_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(headingStorageContractAddresses, outputFileHeading);
+
+  const outputFileHeading = `deployment/${hardhatArguments.network}/storage/heading_storage.json`;
+  const directoryHeading = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameHeading = 'heading_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryHeading, filenameHeading);
+  await storageHandler.saveStorageDeploymentAddresses(headingStorageContractAddresses, outputFileHeading);
 
   // *************************************** INCLUDESFIGURE_STORAGE *************************************************
 
@@ -244,8 +266,13 @@ async function main() {
   console.log(`🎥 includesFigureStorage2Contract contract deployed at ${includesFigureStorage2Contract.address}\\n`)
   includesFigureStorageContractsAddresses.push(includesFigureStorage2Contract.address)
 
-  const outputFileIncludesFigure = 'deployment/storage/includesfigure_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(includesFigureStorageContractsAddresses, outputFileIncludesFigure);
+
+  const outputFileIncludesFigure = `deployment/${hardhatArguments.network}/storage/includesfigure_storage.json`;
+  const directoryIncludesFigure = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameIncludesFigure = 'includesfigure_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryIncludesFigure, filenameIncludesFigure);
+  await storageHandler.saveStorageDeploymentAddresses(includesFigureStorageContractsAddresses, outputFileIncludesFigure);
 
   // *************************************** LENGTH_STORAGE *************************************************
 
@@ -265,8 +292,14 @@ async function main() {
   console.log(`🎥 lengthStorage2Contract contract deployed at ${lengthStorage2Contract.address}\\n`)
   lengthStorageContractsAddresses.push(lengthStorage2Contract.address)
 
-  const outputFileLength = 'deployment/storage/length_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(lengthStorageContractsAddresses, outputFileLength);
+
+  const outputFileLength = `deployment/${hardhatArguments.network}/storage/length_storage.json`;
+  const directoryLength = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameLength = 'length_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryLength, filenameLength);
+
+  await storageHandler.saveStorageDeploymentAddresses(lengthStorageContractsAddresses, outputFileLength);
  
 
   // *************************************** NETWORDEDA_STORAGE *************************************************
@@ -287,8 +320,13 @@ async function main() {
   console.log(`🎥 NetwordedAStorage2Contract contract deployed at ${networdedAStorage2Contract.address}\\n`)
   networdedAStorageContractsAddresses.push(networdedAStorage1Contract.address);
 
-  const outputFileNetwordedA = 'deployment/storage/networdedA_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(networdedAStorageContractsAddresses, outputFileNetwordedA);
+  const outputFileNetwordedA = `deployment/${hardhatArguments.network}/storage/networdedA_storage.json`;
+  const directoryNetwordedA = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameNetwordedA = 'networdedA_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryNetwordedA, filenameNetwordedA);
+
+  await storageHandler.saveStorageDeploymentAddresses(networdedAStorageContractsAddresses, outputFileNetwordedA);
 
   // *************************************** NETWORDEDB_STORAGE *************************************************
   const networdedBStorageContractsAddresses: any[] = [];
@@ -307,8 +345,13 @@ async function main() {
   console.log(`🎥 NetwordedBStorage2Contract contract deployed at ${networdedBStorage2Contract.address}\\n`)
   networdedBStorageContractsAddresses.push(networdedBStorage2Contract.address);
 
-  const outputFileNetwordedB = 'deployment/storage/networdedB_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(networdedBStorageContractsAddresses, outputFileNetwordedB);
+
+  const outputFileNetwordedB = `deployment/${hardhatArguments.network}/storage/networdedB_storage.json`;
+  const directoryNetwordedB = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameNetwordedB = 'networdedB_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryNetwordedB, filenameNetwordedB);
+  await storageHandler.saveStorageDeploymentAddresses(networdedBStorageContractsAddresses, outputFileNetwordedB);
 
   // *************************************** NUMFOOTNOTES_STORAGE *************************************************
   const numFootnotesStorageContractsAddresses: any[] = [];
@@ -328,8 +371,13 @@ async function main() {
   
   numFootnotesStorageContractsAddresses.push(numFootnotesStorage2Contract.address);
 
-  const outputFileNumFootnotes = 'deployment/storage/numfootnotes_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(numFootnotesStorageContractsAddresses, outputFileNumFootnotes);
+
+  const outputFileNumFootnotes = `deployment/${hardhatArguments.network}/storage/numfootnotes_storage.json`;
+  const directoryNumFootnotes = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameNumFootnotes = 'numfootnotes_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryNumFootnotes, filenameNumFootnotes);
+  await storageHandler.saveStorageDeploymentAddresses(numFootnotesStorageContractsAddresses, outputFileNumFootnotes);
 
   // *************************************** SECTION_STORAGE *************************************************
   
@@ -349,10 +397,13 @@ async function main() {
   console.log(`🎥 sectionStorage2Contract contract deployed at ${sectionStorage2Contract.address}\\n`)
   sectionStorageContractsAddresses.push(sectionStorage2Contract.address);
 
-  const outputFileSection = 'deployment/storage/section_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(sectionStorageContractsAddresses, outputFileSection);
 
+  const outputFileSection = `deployment/${hardhatArguments.network}/storage/section_storage.json`;
+  const directorySection = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameSection = 'section_storage.json';  
 
+  await storageHandler.ensureDirectoryExistence(directorySection, filenameSection);
+  await storageHandler.saveStorageDeploymentAddresses(sectionStorageContractsAddresses, outputFileSection);
   
   // *************************************** UNITDESCRIPTORNODEWORDS_STORAGE *************************************************
 
@@ -372,8 +423,14 @@ async function main() {
   console.log(`🎥 UnitDescriptorNodewordsStorage2Contract contract deployed at ${UnitDescriptorNodewordsStorage2Contract.address}\\n`)
   unitDescriptorNodewordsContractsAddresses.push(UnitDescriptorNodewordsStorage2Contract.address)
 
-  const outputFileUnitDescriptorNodewords = 'deployment/storage/unitdescriptornodewords_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(unitDescriptorNodewordsContractsAddresses, outputFileUnitDescriptorNodewords);
+
+  const outputFileUnitDescriptorNodewords = `deployment/${hardhatArguments.network}/storage/unitdescriptornodewords_storage.json`;
+  const directoryUnitDescriptorNodewords = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameUnitDescriptorNodewords = 'unitdescriptornodewords_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryUnitDescriptorNodewords, filenameUnitDescriptorNodewords);
+
+  await storageHandler.saveStorageDeploymentAddresses(unitDescriptorNodewordsContractsAddresses, outputFileUnitDescriptorNodewords);
 
   // *************************************** X_STORAGE *************************************************
 
@@ -393,8 +450,13 @@ async function main() {
   console.log(`🎥 xStorage2Contract contract deployed at ${xStorage2Contract.address}\\n`)
   xStorageContractAddresses.push(xStorage2Contract.address);
 
-  const outputFileXStorage = 'deployment/storage/x_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(xStorageContractAddresses, outputFileXStorage);
+
+  const outputFileXStorage = `deployment/${hardhatArguments.network}/storage/x_storage.json`;
+  const directoryXStorage = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameXStorage = 'x_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryXStorage, filenameXStorage);  
+  await storageHandler.saveStorageDeploymentAddresses(xStorageContractAddresses, outputFileXStorage);
 
 
   // *************************************** Y_STORAGE *************************************************
@@ -415,8 +477,14 @@ async function main() {
   console.log(`🎥 yStorage2Contract contract deployed at ${yStorage2Contract.address}\\n`)
   yStorageContractAddresses.push(yStorage2Contract.address)
 
-  const outputFileY = 'deployment/storage/y_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(yStorageContractAddresses, outputFileY);
+
+  const outputFileYStorage = `deployment/${hardhatArguments.network}/storage/y_storage.json`;
+  const directoryYStorage = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameYStorage = 'y_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryYStorage, filenameYStorage);  
+
+  await storageHandler.saveStorageDeploymentAddresses(yStorageContractAddresses, outputFileYStorage);
 
 
   // *************************************** Z_STORAGE *************************************************
@@ -436,10 +504,12 @@ async function main() {
   console.log(`🎥 zStorage2Contract contract deployed at ${zStorage2Contract.address}\\n`)
   zStorageContractAddresses.push(zStorage2Contract.address);
   
-  const outputFileZ = 'deployment/storage/z_storage.json';  
-  storageHandler.saveStorageDeploymentAddresses(zStorageContractAddresses, outputFileZ);
+  const outputFileZStorage = `deployment/${hardhatArguments.network}/storage/z_storage.json`;
+  const directoryZStorage = `deployment/${hardhatArguments.network}/storage/`;
+  const filenameZStorage = 'z_storage.json';  
 
-
+  await storageHandler.ensureDirectoryExistence(directoryZStorage, filenameZStorage);  
+  await storageHandler.saveStorageDeploymentAddresses(zStorageContractAddresses, outputFileZStorage);
 
 
 

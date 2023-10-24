@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, hardhatArguments, run } from "hardhat";
 import { InvitationStorage } from "../../../typechain";
 import { StorageHandler } from '../../StorageHandler';
 import { SupabaseManager } from "../../util/SupabaseManager";
@@ -7,13 +7,13 @@ import { SupabaseManager } from "../../util/SupabaseManager";
 async function main() {
   const [deployer,] = await ethers.getSigners();
 
-  const outputFileChapter = 'deployment/invitations/invitation_storage.json';
+  const outputFileInvitations = `deployment/${hardhatArguments.network}/invitations/invitation_storage.json`;
 
   console.log(`\n🤖 deployer address ${deployer.address}\n`)
   const storageHandler = new StorageHandler();
 
-  const invitations: any = storageHandler.loadStorageDeploymentAddresses('deployment/invitations/invitations.json');
-  const invitationsHashed: any = storageHandler.loadStorageDeploymentAddresses('deployment/invitations/invitations_hashed.json');
+  const invitations: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/invitations/invitations.json`);
+  const invitationsHashed: any =  await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/invitations/invitations_hashed.json`);
 
   const invitationStorageAddress = [];
 
@@ -24,7 +24,12 @@ async function main() {
   console.log(`🎥 InvitationStorageContract contract deployed at ${invitationStorageContract.address}\\n`)
   
   invitationStorageAddress.push(invitationStorageContract.address);
-  storageHandler.saveStorageDeploymentAddresses(invitationStorageAddress, outputFileChapter);
+
+  const directoryInvitations = `deployment/${hardhatArguments.network}/invitations/`;
+  const filenameInvitations = 'invitation_storage.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryInvitations, filenameInvitations);
+  await storageHandler.saveStorageDeploymentAddresses(invitationStorageAddress, outputFileInvitations);
 
   // InvitationStorage verification
   await new Promise(resolve => setTimeout(resolve, 30000))
@@ -73,7 +78,7 @@ async function main() {
       };
   });
   let supabaseManager = new SupabaseManager();
-  let postgresTransactions = await supabaseManager.storeMultiple(invitationsArray, 'invitations');
+  // let postgresTransactions = await supabaseManager.storeMultiple(invitationsArray, 'invitations');
 
   // second attempt should be to add it in constructor directly
   let invitation = invitations[0];

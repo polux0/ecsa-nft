@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, hardhatArguments, run } from "hardhat";
 import { ReservationStorage } from "../../../typechain";
 import { StorageHandler } from '../../StorageHandler';
 import { SupabaseManager } from "../../util/SupabaseManager";
@@ -7,16 +7,14 @@ import { SupabaseManager } from "../../util/SupabaseManager";
 async function main() {
   const [deployer,] = await ethers.getSigners();
 
-  const outputFileChapter = 'deployment/reservations/reservation_storage.json';
+  const outputFileReservations = `deployment/${hardhatArguments.network}/reservations/reservation_storage.json`;
 
   console.log(`\n🤖 deployer address ${deployer.address}\n`)
   const storageHandler = new StorageHandler();
 
-  const authorizedContract = storageHandler.loadStorageDeploymentAddresses('deployment/nft.json'); 
-  const reservations: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/reservations.json');
-  const reservationsHashed: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/reservations_hashed.json');
-  const tokens: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/tokens.json');
-  const physicalBook: any = storageHandler.loadStorageDeploymentAddresses('deployment/reservations/physical_book.json');
+  const reservations: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/reservations.json`);
+  const reservationsHashed: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/reservations_hashed.json`);
+  const tokens: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/tokens.json`);
 
   const reservationStorageAddress = [];
 
@@ -27,7 +25,12 @@ async function main() {
   console.log(`🎥 ReservationStorageContract contract deployed at ${reservationStorageContract.address}\\n`)
   
   reservationStorageAddress.push(reservationStorageContract.address);
-  storageHandler.saveStorageDeploymentAddresses(reservationStorageAddress, outputFileChapter);
+
+  const directoryReservations = `deployment/${hardhatArguments.network}/reservations/`;
+  const filenameReservations = 'reservation_storage.json';  
+  
+  await storageHandler.ensureDirectoryExistence(directoryReservations, filenameReservations);
+  await storageHandler.saveStorageDeploymentAddresses(reservationStorageAddress, outputFileReservations);
 
   // ReservationStorage verification
   await new Promise(resolve => setTimeout(resolve, 30000))
@@ -67,7 +70,7 @@ async function main() {
   let tranasction = await testReservationStorage["addData(bytes32[],uint256[])"](reservationsHashed, tokens, {gasLimit: 12000000});
   await tranasction.wait();
   let supabaseManager = new SupabaseManager();
-  supabaseManager.storeMultiple(reservationsArray, 'reservations');
+  // supabaseManager.storeMultiple(reservationsArray, 'reservations');
 
 
   // // second attempt should be to add it in constructor directly

@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, run, hardhatArguments } from "hardhat";
 import { StorageFacadeManager } from "../../typechain";
 import { StorageHandler } from '../StorageHandler';
 
@@ -9,12 +9,12 @@ async function main() {
   const [deployer,] = await ethers.getSigners();
   const owner = process.env.OWNER || "0x3C44e5692B73e04Cffb0BDa06e28c7cd754E6bf6";
 
-  const outputFileStorageFacadeManager = 'deployment/storage_facade_manager.json';
+  const outputFileStorageFacadeManager = `deployment/${hardhatArguments.network}/storage_facade_manager.json`;
   const storageFacadeManagerContractsAddresses = [];
 
   console.log(`\n🤖 deployer address ${deployer.address}\n`)
   const storageHandler = new StorageHandler();
-  const storageFacadeAddresses: any = storageHandler.loadStorageDeploymentAddresses('deployment/facades/storage_facades.json');
+  const storageFacadeAddresses: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/facades/storage_facades.json`);
   
   const storageFacadeManagerFactory = await ethers.getContractFactory("StorageFacadeManager");
   const storageFacadeManagerContract = await storageFacadeManagerFactory.deploy(storageFacadeAddresses, { gasLimit: 20000000 }) as StorageFacadeManager; // as TestNFT
@@ -22,7 +22,7 @@ async function main() {
   console.log(`🎥 storageFacadeManagerContract contract deployed at ${storageFacadeManagerContract.address}\\n`)
   
   storageFacadeManagerContractsAddresses.push(storageFacadeManagerContract.address);
-  storageHandler.saveStorageDeploymentAddresses(storageFacadeManagerContractsAddresses, outputFileStorageFacadeManager);
+  await storageHandler.saveStorageDeploymentAddresses(storageFacadeManagerContractsAddresses, outputFileStorageFacadeManager);
 
   // StorageFacadeManager verification
   await new Promise(resolve => setTimeout(resolve, 30000))

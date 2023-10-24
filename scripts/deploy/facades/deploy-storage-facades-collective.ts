@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, run, hardhatArguments } from "hardhat";
 import { ChapterStorageFacade, HeadingStorageFacade, IncludesFigureStorageFacade, LengthStorageFacade, NetwordedAStorageFacade, NetwordedBStorageFacade, NumFootnotesStorageFacade, SectionStorageFacade, UnitDescriptorStorageFacade, UnitStorageFacade, XStorageFacade, YStorageFacade, ZStorageFacade } from "../../../typechain";
 import { StorageHandler } from '../../StorageHandler';
 
@@ -68,7 +68,8 @@ async function main() {
 
   // ************************************ FIGURE_STORAGE_FACADE ************************************
 
-  const figureStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/figure_storage.json')
+
+  const figureStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/figure_storage.json`)
 
 
   // Mapping of current state of the contracts ( Should be final )
@@ -87,7 +88,7 @@ async function main() {
 
   // ************************************ CHAPTER_STORAGE_FACADE ************************************
 
-  const chapterStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/chapter_storage.json');
+  const chapterStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/chapter_storage.json`);
 
   // Mapping of current state of the contracts
   // ChapterStorage1 = 1 - 363
@@ -113,7 +114,7 @@ async function main() {
 
   // ************************************ SECTION_STORAGE_FACADE ************************************
 
-  const SectionStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/section_storage.json')
+  const SectionStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/section_storage.json`)
   // Mapping of current state of the contracts
   // sectionStorage1 = 1 - 363
   // sectionStorage2 = 364 - 726
@@ -137,7 +138,7 @@ async function main() {
 
   // ************************************ HEADING_STORAGE_FACADE ************************************
 
-  const HeadingStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/heading_storage.json');
+  const HeadingStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/heading_storage.json`);
 
   // Mapping of current state of the contracts
   // HeadingStorage1 = 1 - 359
@@ -162,7 +163,7 @@ async function main() {
 
   // ************************************ NUMFOOTNOTES_STORAGE_FACADE ************************************
 
-  const numFootnotesStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/numfootnotes_storage.json');
+  const numFootnotesStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/numfootnotes_storage.json`);
 
   // Mapping of current state of the contracts
   // NumFootnotesStorage1 = 1 - 360
@@ -187,7 +188,7 @@ async function main() {
 
   // ************************************ INCLUDESFIGURE_STORAGE_FACADE ************************************
 
-  const includesFigureStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/includesfigure_storage.json');
+  const includesFigureStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/includesfigure_storage.json`);
 
   // Mapping of current state of the contracts
   // IncludesFigureStorage1 = 1 - 359
@@ -212,7 +213,7 @@ async function main() {
 
   // ************************************ LENGTH_STORAGE_FACADE ************************************
 
-  const lengthStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/length_storage.json')
+  const lengthStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/length_storage.json`)
 
   // Mapping of current state of the contracts ( should be finalized )
   // LengthStorage1 = 1 - 369
@@ -229,7 +230,7 @@ async function main() {
   storageFacadesContractsAddresses.push(lengthStorageFacadeContract.address);
 
   // ************************************ X_STORAGE_FACADE ************************************
-  const xStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/x_storage.json');
+  const xStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/x_storage.json`);
   
 
   // Mapping of current state of the contracts ( should be finalized! )
@@ -247,7 +248,7 @@ async function main() {
   storageFacadesContractsAddresses.push(xStorageFacadeContract.address);                  
 
   // ************************************ Y_STORAGE_FACADE ************************************
-  const yStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/y_storage.json');
+  const yStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/y_storage.json`);
     
   // Mapping of current state of the contracts ( should be finalized !)
   // yStorage1 = 1 - 370
@@ -264,7 +265,7 @@ async function main() {
   storageFacadesContractsAddresses.push(yStorageFacadeContract.address);            
 
   // ************************************ Z_STORAGE_FACADE ************************************
-  const zStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/z_storage.json')
+  const zStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/z_storage.json`)
     
   // Mapping of current state of the contracts ( should be finalized! )
   // yStorage1 = 1 - 370
@@ -281,7 +282,7 @@ async function main() {
   storageFacadesContractsAddresses.push(zStorageFacadeContract.address);
 
   // ************************************ UNITDESCRIPTOR_STORAGE_FACADE ************************************
-  const unitDescriptorStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/unitdescriptornodewords_storage.json');
+  const unitDescriptorStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/unitdescriptornodewords_storage.json`);
   // Mapping of current state of the contracts
   // UnitDescriptorStorage1 = 1 - 359
   // UnitDescriptorStorage2 = 360 - 726
@@ -304,7 +305,7 @@ async function main() {
 
   // ************************************ NETWORDEDA_STORAGE_FACADE ************************************
 
-  const networdedAStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/networdedA_storage.json');
+  const networdedAStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/networdedA_storage.json`);
 
 
   // Mapping of current state of the contracts ( should be final! ) ( good )
@@ -322,7 +323,7 @@ async function main() {
 
   // ************************************ NETWORDEDB_STORAGE_FACADE ************************************
 
-  const networdedBStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/networdedB_storage.json');
+  const networdedBStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/networdedB_storage.json`);
     
   // Mapping of current state of the contracts ( should be final! )
   // NetwordedBStorage1 = 1 - 370
@@ -339,7 +340,7 @@ async function main() {
 
 
   // ************************************ UNITSTORAGE_STORAGE_FACADE ************************************
-  const unitStorageAddresses = storageHandler.loadStorageDeploymentAddresses('deployment/storage/unit_storage.json')
+  const unitStorageAddresses = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage/unit_storage.json`)
 
   // Latest manual remapping
 
@@ -404,8 +405,13 @@ async function main() {
   storageFacadesContractsAddresses.push(unitStorageFacadeContract.address);   
     
     
-    const outputFileStorageFacadesCollective = 'deployment/facades/storage_facades.json';
-    storageHandler.saveStorageDeploymentAddresses(storageFacadesContractsAddresses, outputFileStorageFacadesCollective);
+  const outputFileStorageFacadesCollective = `deployment/${hardhatArguments.network}/facades/storage_facades.json`;
+
+  const directoryChapter = `deployment/${hardhatArguments.network}/facades/`;
+  const filenameChapter = 'storage_facades.json';  
+
+  await storageHandler.ensureDirectoryExistence(directoryChapter, filenameChapter);
+  await storageHandler.saveStorageDeploymentAddresses(storageFacadesContractsAddresses, outputFileStorageFacadesCollective);
     
   // ************************************ Verification ************************************
 

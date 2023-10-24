@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, hardhatArguments, run } from "hardhat";
 import { NFTMetadata } from "../../typechain";
 import { StorageHandler } from '../StorageHandler';
 
@@ -12,12 +12,12 @@ async function main() {
   const imageURL1 = "ipfs://QmUi3oEmEeDc8SqV8NxSyew9fg1QZKGp3fCeSiN7DszNHn/";
   const imageURL2 = "ipfs://QmZrYrnmrztBcXg4GdWkjMmdCkaeMPWvXprNMp8o4AoYWL/";
 
-  const outputFileNftMetadata = 'deployment/nft_metadata.json';
+  const outputFileNftMetadata = `deployment/${hardhatArguments.network}/nft_metadata.json`;
   const nftMetadataContractsAddresses = [];
 
   console.log(`\n🤖 deployer address ${deployer.address}\n`)
   const storageHandler = new StorageHandler();
-  const storageFacadeManagerAddresses: any = storageHandler.loadStorageDeploymentAddresses('deployment/storage_facade_manager.json');
+  const storageFacadeManagerAddresses: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/storage_facade_manager.json`);
   
   // Deploy the SplitSequence library
   const splitSequenceLibraryFactory = await ethers.getContractFactory("SplitSequence");
@@ -42,7 +42,7 @@ async function main() {
   console.log(`🎥 NFTMetadata contract deployed at ${nftMetadataContract.address}\\n`)
   
   nftMetadataContractsAddresses.push(nftMetadataContract.address);
-  storageHandler.saveStorageDeploymentAddresses(nftMetadataContractsAddresses, outputFileNftMetadata);
+  await storageHandler.saveStorageDeploymentAddresses(nftMetadataContractsAddresses, outputFileNftMetadata);
 
   // NFTMetadata verification
   await new Promise(resolve => setTimeout(resolve, 30000))

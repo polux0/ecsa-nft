@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, run, hardhatArguments } from "hardhat";
 import { StorageHandler } from '../StorageHandler';
 
 async function main() {
@@ -6,7 +6,7 @@ async function main() {
   console.log('\\n🤖 minter: ', deployer.address);
 
   const storageHandler = new StorageHandler();
-  const nftContractAddress: any = storageHandler.loadStorageDeploymentAddresses('deployment/nft.json');
+  const nftContractAddress: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/nft.json`);
 
   // Mint the test NFT
   const testNFT = await ethers.getContractAt('NFT', nftContractAddress[0]);
@@ -15,7 +15,7 @@ async function main() {
   // 9, 12, 14, 15, 18, 19, 21, 22, 23, 25, 26, 27, 29, 30
   // const notMinted = [31, 32, 34, 37, 38, 39, 43, 45, 52];
   
-  for (let i = 378; i <= 601; i++) {
+  for (let i = 2; i <= 601; i++) {
       console.log(`Minting for number: ${i}`);
       let tranasction = await testNFT.mintBaseTest(i, {gasLimit: 12000000});
       await tranasction.wait();

@@ -49,7 +49,7 @@ contract InvitationStorage is Ownable{
     function getDataByInvitationId(bytes32 _invitationId) public view returns (bool) {
         Data memory dataItem = dataMapping[_invitationId];
         require(dataItem.invitationId != 0, "Invitation not found");
-        return dataItem.isUsed >= 4;
+        return dataItem.isUsed >= 5;
     }
 
     function isValidInvitation(string memory data) public view returns (bool) {
@@ -59,7 +59,7 @@ contract InvitationStorage is Ownable{
         if(dataItem.invitationId == 0){
             return false;
         }
-        if (dataItem.isUsed <= 4) {
+        if (dataItem.isUsed <= 5) {
             return true;
         }
         return false;

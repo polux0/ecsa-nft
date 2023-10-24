@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, hardhatArguments, run } from "hardhat";
 import { NFT } from "../../typechain";
 import { StorageHandler } from '../StorageHandler';
 
@@ -9,28 +9,33 @@ async function main() {
   const [deployer,] = await ethers.getSigners();
   const owner = process.env.OWNER || "0x3C44e5692B73e04Cffb0BDa06e28c7cd754E6bf6";
 
-  const outputFileChapter = 'deployment/nft.json';
+  const outputFileNFT = `deployment/${hardhatArguments.network}/nft.json`;
   const nftStorageContractsAddresses = [];
 
   console.log(`\\n🤖 deployer address ${deployer.address}\\n`)
   const storageHandler = new StorageHandler();
-  const nftMetadataAddresses: any = storageHandler.loadStorageDeploymentAddresses('deployment/nft_metadata.json');
+  const nftMetadataAddresses: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/nft_metadata.json`);
 
   // Deploy the NFT
   const testNFT = await ethers.getContractFactory('NFT');
 
-  const reservationStorageLocation = 'deployment/reservations/reservation_storage.json';
-  const reservationStorageContractAddress: any = storageHandler.loadStorageDeploymentAddresses(reservationStorageLocation);
+  const reservationStorageLocation = `deployment/${hardhatArguments.network}/reservations/reservation_storage.json`;
+  const reservationStorageContractAddress: any = await storageHandler.loadStorageDeploymentAddresses(reservationStorageLocation);
 
-  const invitationStorageLocation = 'deployment/invitations/invitation_storage.json';
-  const invitationStorageContractAddress: any = storageHandler.loadStorageDeploymentAddresses(invitationStorageLocation);
+  const invitationStorageLocation = `deployment/${hardhatArguments.network}/invitations/invitation_storage.json`;
+  const invitationStorageContractAddress: any = await storageHandler.loadStorageDeploymentAddresses(invitationStorageLocation);
 
   const testNFTContract = await testNFT.deploy(nftMetadataAddresses[0], reservationStorageContractAddress[0], invitationStorageContractAddress[0], { gasLimit: 20000000 }) as NFT; // as TestNFT
   await testNFTContract.deployed()
   console.log(`🎥 NFT contract deployed at ${testNFTContract.address}\\n`)
   
   nftStorageContractsAddresses.push(testNFTContract.address);
-  storageHandler.saveStorageDeploymentAddresses(nftStorageContractsAddresses, outputFileChapter);
+
+  const directoryNFT = `deployment/${hardhatArguments.network}/`;
+  const filenameNFT = 'nft.json';
+  
+  await storageHandler.ensureDirectoryExistence(directoryNFT, filenameNFT);
+  await storageHandler.saveStorageDeploymentAddresses(nftStorageContractsAddresses, outputFileNFT);
 
   // NFT verification
   await new Promise(resolve => setTimeout(resolve, 30000))

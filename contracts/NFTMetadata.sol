@@ -170,7 +170,7 @@ contract NFTMetadata is Ownable{
         );
     }
     function getTokenURI(uint256 tokenId) public returns (string memory) {
-        string memory name = string(abi.encodePacked("#", tokenId.toString(), 'Ecsa Book Discourse Unit'));
+        string memory name = string(abi.encodePacked('Discourse Unit # ', tokenId.toString()));
         // should be like this
         emit NFTMetadataDebugging("before description");
         string memory description = storageFacadeManager.getUnitStorageFacade().getUnitBasedOnId(tokenId);
@@ -182,7 +182,7 @@ contract NFTMetadata is Ownable{
         // was before ()
         // string memory imageURL = tokenId >= 401 ? imageURL2 : imageURL1;
 
-        string memory imageURL = "ipfs://QmXJyqtpJwVXfrmwCLqmY89tn9yskK7eMkH6JwzHavekAL/";
+        string memory imageURL = "ipfs://QmW6XNWUcc6xc28UW5yVcSAsujzidgJ8hR9ML3SbMzbfaM/";
         string memory image = string(abi.encodePacked(imageURL, Strings.toString(tokenId), ".png"));
 
         emit NFTMetadataDebugging("image");

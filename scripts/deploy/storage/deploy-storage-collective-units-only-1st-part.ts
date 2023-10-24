@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, run, hardhatArguments } from "hardhat";
 import { UnitStorage1, UnitStorage10, UnitStorage11, UnitStorage12, UnitStorage13, UnitStorage14, UnitStorage15, UnitStorage16, UnitStorage17, UnitStorage18, UnitStorage19, UnitStorage20, UnitStorage3, UnitStorage4, UnitStorage5, UnitStorage6, UnitStorage7, UnitStorage8, UnitStorage9 } from "../../../typechain";
 import { StorageHandler } from '../../StorageHandler';
 
@@ -13,7 +13,13 @@ async function main() {
   // *************************************** UNIT_STORAGE *************************************************
 
   const unitStorageContractsAddresses: any[] = [];
-  const outputFileUnit = 'deployment/storage/unit_storage.json';
+  
+  //
+  const outputFile = `deployment/${hardhatArguments.network}/storage/unit_storage.json`;
+
+  const directory = `deployment/${hardhatArguments.network}/storage/`;
+  const filename = 'unit_storage.json';
+
 
   // Deploy the UnitStorage1
   const unitStorage1 = await ethers.getContractFactory('UnitStorage1')
@@ -59,7 +65,8 @@ async function main() {
   unitStorageContractsAddresses.push(unitStorage5Contract.address)
 
   // save 
-  storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFileUnit)
+  await storageHandler.ensureDirectoryExistence(directory, filename);
+  await storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFile)
 
 
   await new Promise(resolve => setTimeout(resolve, 10000))
@@ -108,7 +115,8 @@ async function main() {
   unitStorageContractsAddresses.push(unitStorage10Contract.address)
 
   // save 
-  storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFileUnit)
+  await storageHandler.ensureDirectoryExistence(directory, filename);
+  await storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFile)
 
   await new Promise(resolve => setTimeout(resolve, 10000))
 
@@ -157,7 +165,8 @@ async function main() {
   unitStorageContractsAddresses.push(unitStorage15Contract.address)
 
   // save 
-  storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFileUnit)
+  await storageHandler.ensureDirectoryExistence(directory, filename);
+  await storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFile)
 
   await new Promise(resolve => setTimeout(resolve, 10000))
 
@@ -203,8 +212,9 @@ async function main() {
   await unitStorage20Contract.deployed()
   console.log(`🎥 unitStorage20Contract contract deployed at ${unitStorage20Contract.address}\\n`)
   unitStorageContractsAddresses.push(unitStorage20Contract.address)
- 
-  storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFileUnit)
+
+  await storageHandler.ensureDirectoryExistence(directory, filename);
+  await storageHandler.saveStorageDeploymentAddresses(unitStorageContractsAddresses, outputFile)
 
 
   // ************************************ Verification ************************************

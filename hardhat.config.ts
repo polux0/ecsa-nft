@@ -61,6 +61,20 @@ export default {
         mnemonic: mnemonic,
       },
     },
+    zoratestnet: {
+      url: `https://testnet.rpc.zora.co/`,
+      gasPrice: 5000000000,
+      accounts: {
+        mnemonic: mnemonic,
+      },
+    },
+    zora: {
+      url: `https://testnet.rpc.zora.co/`,
+      // gasPrice: 5000000000,
+      accounts: {
+        mnemonic: mnemonic,
+      },
+    },
     mumbai: {
       url: `https://matic-mumbai.chainstacklabs.com`,
       accounts: {
@@ -91,8 +105,17 @@ export default {
   etherscan: {
     // remove comment for polygon ecosystem ( mumbai, polygon network )
     // apiKey: polyscanKey
-    apiKey: etherscanKey
-
+    apiKey: etherscanKey,
+    customChains: [
+      {
+        network: "zoratestnet",
+        chainId: 999,
+        urls: {
+          apiURL: "https://testnet.explorer.zora.energy/api",
+          browserURL: "https://testnet.explorer.zora.energy/"
+        }
+      }
+    ],
   },
   mocha: {
     timeout: 150000
