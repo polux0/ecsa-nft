@@ -16,3 +16,9 @@ artifacts
 
 /deployment/reservations/reservations.json
 /deployment/reservations/reservations_hashed.json
+
+/deployment/polygon/invitations/invitations.json
+/deployment/polygon/invitations/invitations_hashed.json
+
+/deployment/polygon/reservations/reservations.json
+/deployment/polygon/reservations/reservations_hashed.json
