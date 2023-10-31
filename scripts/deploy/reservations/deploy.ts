@@ -12,9 +12,9 @@ async function main() {
   console.log(`\n🤖 deployer address ${deployer.address}\n`)
   const storageHandler = new StorageHandler();
 
-  const reservations: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/reservations.json`);
-  const reservationsHashed: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/reservations_hashed.json`);
-  const tokens: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/sepolia/reservations/tokens.json`);
+  const reservations: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/reservations/reservations.json`);
+  const reservationsHashed: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/reservations/reservations_hashed.json`);
+  const tokens: any = await storageHandler.loadStorageDeploymentAddresses(`deployment/${hardhatArguments.network}/reservations/tokens.json`);
 
   const reservationStorageAddress = [];
 
@@ -70,7 +70,7 @@ async function main() {
   let tranasction = await testReservationStorage["addData(bytes32[],uint256[])"](reservationsHashed, tokens, {gasLimit: 12000000});
   await tranasction.wait();
   let supabaseManager = new SupabaseManager();
-  // supabaseManager.storeMultiple(reservationsArray, 'reservations');
+  supabaseManager.storeMultiple(reservationsArray, 'reservations');
 
 
   // // second attempt should be to add it in constructor directly

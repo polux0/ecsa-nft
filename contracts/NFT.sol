@@ -25,15 +25,15 @@ contract NFT is ERC721URIStorage, Ownable{
     NFTMetadata public nftMetadata;
     uint256[] public _alreadyMintedTokenIds;
     Counters.Counter private _tokenIds;
-    uint256 private peripheryPrice = 0.0001 ether;
-    uint256 private peripheryBookPrice = 0.0002 ether;
-    uint256 private imperialCorePrice = 0.01 ether;
-    uint256 private imperialCoreBookPrice = 0.07 ether;
+    uint256 private peripheryPrice = 16 ether;
+    uint256 private peripheryBookPrice = 90 ether;
+    uint256 private imperialCorePrice = 32 ether;
+    uint256 private imperialCoreBookPrice = 180 ether;
     mapping(uint256 => uint256) public tokenPurchasePrice;
     mapping(address => bool) public hasMinted;
     ReservationStorage reservationContract;
     InvitationStorage invitationsContract;
-    bool reservationsActive = false;
+    bool reservationsActive = true;
     bool invitationsActive = true;
     bool public isOwnerOnlyMode = true;
 
@@ -82,7 +82,7 @@ contract NFT is ERC721URIStorage, Ownable{
         require(validPrice(chosenPrice), "Invalid chosen price");
         require(msg.value >= chosenPrice, "Ether value sent is not correct");
         require(!_exists(tokenId), "Token with this ID already exists");
-        // require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
+        require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
 
         _alreadyMintedTokenIds.push(tokenId);
         hasMinted[msg.sender] = true;
@@ -95,7 +95,7 @@ contract NFT is ERC721URIStorage, Ownable{
         require(validPrice(chosenPrice), "Invalid chosen price");
         require(msg.value >= chosenPrice, "Ether value sent is not correct");
         require(tokenId <= 601, "Token ID greater than allowed maximum");
-        // require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
+        require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
 
         tokenPurchasePrice[tokenId] = chosenPrice;
         _alreadyMintedTokenIds.push(tokenId);
@@ -103,19 +103,19 @@ contract NFT is ERC721URIStorage, Ownable{
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, nftMetadata.getTokenURI(tokenId));
     }
-    function mintBaseTest(uint256 tokenId) public {
-        require(!_exists(tokenId), "Token with this ID already exists");
-        // require(validPrice(chosenPrice), "Invalid chosen price");
-        // require(msg.value >= chosenPrice, "Ether value sent is not correct");
-        require(tokenId <= 601, "Token ID greater than allowed maximum");
-        // require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
+    // function mintBaseTest(uint256 tokenId) public {
+    //     require(!_exists(tokenId), "Token with this ID already exists");
+    //     // require(validPrice(chosenPrice), "Invalid chosen price");
+    //     // require(msg.value >= chosenPrice, "Ether value sent is not correct");
+    //     require(tokenId <= 601, "Token ID greater than allowed maximum");
+    //     // require(!hasMinted[msg.sender], "You have already minted an NFT from this collection.");
 
-        // tokenPurchasePrice[tokenId] = chosenPrice;
-        _alreadyMintedTokenIds.push(tokenId);
-         hasMinted[msg.sender] = true;
-        _safeMint(msg.sender, tokenId);
-        _setTokenURI(tokenId, nftMetadata.getTokenURI(tokenId));
-    }
+    //     // tokenPurchasePrice[tokenId] = chosenPrice;
+    //     _alreadyMintedTokenIds.push(tokenId);
+    //      hasMinted[msg.sender] = true;
+    //     _safeMint(msg.sender, tokenId);
+    //     _setTokenURI(tokenId, nftMetadata.getTokenURI(tokenId));
+    // }
     
     function getReservationsActive() external view returns(bool) {
         return reservationsActive;

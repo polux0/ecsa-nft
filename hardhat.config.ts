@@ -22,8 +22,9 @@ const mnemonic = fs.existsSync('.secret')
 
 const infuraKey = process.env.INFURA_KEY
 const etherscanKey = process.env.ETHERSCAN_KEY
-const polyscanKey = process.env.POLYGONSCAN_KEY
+const polyscanKey = process.env.POLYSCAN_KEY
 const otpimismScanKey = process.env.OPTIMISTIC_ETHERSCAN_API_KEY
+const alchemyKey  = process.env.ALCHEMY_KEY
 
 export default {
   networks: {
@@ -76,13 +77,14 @@ export default {
       },
     },
     mumbai: {
-      url: `https://matic-mumbai.chainstacklabs.com`,
+      url: `https://polygon-testnet.public.blastapi.io`,
       accounts: {
         mnemonic: mnemonic,
       },
     },
     polygon: {
-      url: `https://polygon-rpc.com`,
+      gasPrice: 90000000000,
+      url: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyKey}`,
       accounts: {
         mnemonic: mnemonic,
       },
@@ -90,7 +92,7 @@ export default {
   },
   solidity: '0.8.4',
   settings: {
-    optimizer: {
+    optimizer: {  
       enabled: true,
       runs: 1
     }
@@ -104,8 +106,8 @@ export default {
   },
   etherscan: {
     // remove comment for polygon ecosystem ( mumbai, polygon network )
-    // apiKey: polyscanKey
-    apiKey: etherscanKey,
+    apiKey: polyscanKey,
+    // apiKey: etherscanKey,
     customChains: [
       {
         network: "zoratestnet",

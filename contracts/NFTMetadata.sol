@@ -29,7 +29,7 @@ contract NFTMetadata is Ownable{
     constructor(address _storageFacadeManager, string memory _imageURL1, string memory _imageURL2) {
         storageFacadeManager = StorageFacadeManager(_storageFacadeManager);
         authorizedContract = _storageFacadeManager;
-        imageURL1 = _imageURL1;
+        imageURL1 = "ipfs://QmW6XNWUcc6xc28UW5yVcSAsujzidgJ8hR9ML3SbMzbfaM/";
         imageURL2 = _imageURL2;
         TRAIT_TYPES = initializeTraitTypes();
     }
@@ -46,27 +46,13 @@ contract NFTMetadata is Ownable{
     function setImageURL2(string memory _imageURL2) external onlyOwner {
         imageURL2 = _imageURL2;
     }
-    // works well with units
-    // function generateUnit(uint256 tokenId) public returns (string memory){
-    // string memory sentence = unitStorageFacade.getUnitBasedOnId(tokenId);
-    // string[] memory sequence = SplitSequence.splitSentence(sentence, 95);
-    // bytes memory svg = abi.encodePacked(SVGGenerator.generateSVG(sequence));
-    //     return string(
-    //         abi.encodePacked(
-    //             "data:image/svg+xml;base64,",
-    //             Base64.encode(svg)
-    //         )
-    //     );
-    // }
+
     function initializeTraitTypes() internal pure returns (string[] memory) {
         string[] memory traitTypes = new string[](13);
-        // traitTypes[0] = "Footnote";
         traitTypes[0] = "Figure";
         traitTypes[1] = "Chapter";
         traitTypes[2] = "Section";
         traitTypes[3] = "Heading";
-        // was before
-        // traitTypes[4] = "Num Footnotes";
         traitTypes[4] = "Footnotes count";
         traitTypes[5] = "Includes figure";
         traitTypes[6] = "Length";
@@ -170,33 +156,19 @@ contract NFTMetadata is Ownable{
         );
     }
     function getTokenURI(uint256 tokenId) public returns (string memory) {
-        string memory name = string(abi.encodePacked('Discourse Unit # ', tokenId.toString()));
-        // should be like this
-        emit NFTMetadataDebugging("before description");
+        string memory name = string(abi.encodePacked('Discourse Unit #', tokenId.toString()));
         string memory description = storageFacadeManager.getUnitStorageFacade().getUnitBasedOnId(tokenId);
-        emit NFTMetadataDebugging("after description");
-        emit NFTMetadataDebugging(description);
-        // was before
-        // string memory image = generateUnit(tokenId);
 
-        // was before ()
-        // string memory imageURL = tokenId >= 401 ? imageURL2 : imageURL1;
 
         string memory imageURL = "ipfs://QmW6XNWUcc6xc28UW5yVcSAsujzidgJ8hR9ML3SbMzbfaM/";
-        string memory image = string(abi.encodePacked(imageURL, Strings.toString(tokenId), ".png"));
-
-        emit NFTMetadataDebugging("image");
-        emit NFTMetadataDebugging(image);
+        string memory image = string(abi.encodePacked(imageURL1, Strings.toString(tokenId), ".png"));
 
         string[] memory traitValues = new string[](TRAIT_TYPES.length);
         for (uint256 i = 0; i < TRAIT_TYPES.length; i++) {
             traitValues[i] = getTraitValue(i, tokenId);
         }
-        emit NFTMetadataDebugging("after trait values");
         string memory attributes = buildAttributes(TRAIT_TYPES, traitValues);
-        emit NFTMetadataDebugging(attributes);
         string memory metadata = encodeMetadata(name, description, image, attributes);
-        emit NFTMetadataDebugging(metadata);
         return metadata;
     }
     // Withdraw ERC20

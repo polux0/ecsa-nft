@@ -17,8 +17,8 @@ contract TestNFTProblematicOnesIPFSResolution is ERC721URIStorage{
     using Counters for Counters.Counter;
     uint256[] public _alreadyMintedTokenIds;
     Counters.Counter private _tokenIds;
-    uint256 constant PRICE_1 = 0.0001 ether; 
-    uint256 constant PRICE_2 = 0.0002 ether;
+    uint256 constant PRICE_1 = 29 ether; 
+    uint256 constant PRICE_2 = 30 ether;
     mapping(uint256 => uint256) public tokenPurchasePrice;
     event TokenURI(string uri);
 
@@ -40,9 +40,7 @@ contract TestNFTProblematicOnesIPFSResolution is ERC721URIStorage{
     // - Networded A
     // - Networded B
 
-    constructor(address[] memory _storageFacades) ERC721("ECSANFTProblematicOnesIPFSResolution", "NFT"){
-        
-    }
+    constructor() ERC721("ECSANFTProblematicOnesIPFSResolution", "NFT"){}
 
     function getAlreadyMintedTokenIds() public view returns (uint256[] memory){
         return _alreadyMintedTokenIds;

@@ -1,4 +1,4 @@
-import { ethers, run } from "hardhat";
+import { ethers, hardhatArguments, run  } from "hardhat";
 import { StorageHandler } from '../../StorageHandler';
 
 function generateInvitationCode(length: number = 10): string {
@@ -23,7 +23,7 @@ async function main() {
 
   const storageHandler = new StorageHandler();
 
-  const baseURL = 'https://ecsa-book.vercel.app/';
+  const baseURL = 'https://postcapitalist.agency/';
   const invitationURLs = generateInvitationURL(baseURL);
 
   const invitations = []
@@ -45,8 +45,8 @@ async function main() {
   // console.log('invitations :\n', invitations)
   // console.log('invitationsHashed: \n', invitationsHashed);
 
-  const outputFileReservations = 'deployment/invitations/invitations.json';
-  const outputFileReservationsHashed = 'deployment/invitations/invitations_hashed.json';
+  const outputFileReservations = `deployment/${hardhatArguments.network}/invitations/invitations.json`;
+  const outputFileReservationsHashed = `deployment/${hardhatArguments.network}/invitations/invitations_hashed.json`;
 
   storageHandler.saveStorageDeploymentAddresses(invitations, outputFileReservations);
   storageHandler.saveStorageDeploymentAddresses(invitationsHashed, outputFileReservationsHashed);

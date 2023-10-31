@@ -11,7 +11,7 @@ async function main() {
 
   console.log(`\\n🤖 deployer address ${deployer.address}\\n`)
   const storageHandler = new StorageHandler();
-  const storageFacadeAddresses: any = storageHandler.loadStorageDeploymentAddresses('deployment/facades/storage_facades.json');
+  const storageFacadeAddresses: any = storageHandler.loadStorageDeploymentAddresses('deployment/sepolia/facades/storage_facades.json');
   // Deploy the SplitSequence library
   // const splitSequenceLibraryFactory = await ethers.getContractFactory("SplitSequence");
   // const splitSequenceLibrary = await splitSequenceLibraryFactory.deploy();
@@ -32,7 +32,7 @@ async function main() {
   // }
   );
   
-  const testNFTContract = await testNFT.deploy(storageFacadeAddresses, { gasLimit: 20000000 }) as TestNFTProblematicOnesIPFSResolution; // as TestNFT
+  const testNFTContract = await testNFT.deploy({ gasLimit: 20000000 }) as TestNFTProblematicOnesIPFSResolution; // as TestNFT
   await testNFTContract.deployed()
   console.log(`🎥 TestNFTAnother contract deployed at ${testNFTContract.address}\\n`)
   
@@ -44,9 +44,7 @@ async function main() {
   await run("verify:verify", {
     address: testNFTContract.address,
     network: ethers.provider.network,
-    constructorArguments: [
-      storageFacadeAddresses
-    ],
+    constructorArguments: [],
     contract: "contracts/TestNFTProblematicOnesIPFSResolution.sol:TestNFTProblematicOnesIPFSResolution"
   })
 }
